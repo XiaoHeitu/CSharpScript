@@ -1,15 +1,168 @@
 @page "/"
 
-<h1>CSharpScript 功能演示</h1>
+<div class="home-container">
+    <div class="hero-section">
+        <h1>CSharpScript 功能演示</h1>
+        <p>这是一个展示 CSharpScript 类库基础功能的 Blazor WebAssembly 应用程序</p>
+    </div>
 
-<p>这是一个展示 CSharpScript 类库基础功能的 Blazor WebAssembly 应用程序。</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <span class="bi bi-terminal" aria-hidden="true"></span>
+            </div>
+            <h3>Console 控制台</h3>
+            <p>浏览器控制台 API，支持日志、警告、错误、计时器等功能</p>
+            <ConsoleDemo />
+        </div>
 
-<ConsoleDemo />
+        <div class="feature-card">
+            <div class="feature-icon">
+                <span class="bi bi-window" aria-hidden="true"></span>
+            </div>
+            <h3>Window 窗口</h3>
+            <p>浏览器窗口操作，包含尺寸信息、弹窗、滚动控制等</p>
+            <WindowDemo />
+        </div>
 
-<WindowDemo />
+        <div class="feature-card">
+            <div class="feature-icon">
+                <span class="bi bi-compass" aria-hidden="true"></span>
+            </div>
+            <h3>Navigator 浏览器</h3>
+            <p>浏览器导航信息，用户代理、平台、语言、在线状态等</p>
+            <NavigatorDemo />
+        </div>
 
-<NavigatorDemo />
+        <div class="feature-card">
+            <div class="feature-icon">
+                <span class="bi bi-geo-alt" aria-hidden="true"></span>
+            </div>
+            <h3>Location 位置</h3>
+            <p>页面 URL 信息解析与导航控制</p>
+            <LocationDemo />
+        </div>
 
-<LocationDemo />
+        <div class="feature-card">
+            <div class="feature-icon">
+                <span class="bi bi-database" aria-hidden="true"></span>
+            </div>
+            <h3>Storage 存储</h3>
+            <p>浏览器本地存储，SessionStorage 与 LocalStorage 操作</p>
+            <StorageDemo />
+        </div>
 
-<StorageDemo />
+        <div class="feature-card">
+            <div class="feature-icon">
+                <span class="bi bi-file-earmark-text" aria-hidden="true"></span>
+            </div>
+            <h3>Document 文档</h3>
+            <p>浏览器文档对象操作，元素查询、创建、属性管理</p>
+            <DocumentDemo />
+        </div>
+    </div>
+</div>
+
+<style>
+    .home-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .hero-section {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        color: white;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin: 0;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .feature-card h3 {
+        margin: 0 0 0.5rem 0;
+        color: #2c3e50;
+        font-size: 1.25rem;
+    }
+
+    .feature-card > p {
+        color: #7f8c8d;
+        margin: 0 0 1rem 0;
+        font-size: 0.9rem;
+    }
+
+    .card-demo-link {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #ecf0f1;
+    }
+
+    .btn-link {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .btn-link:hover {
+        color: #2980b9;
+    }
+
+    @@media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-section h1 {
+            font-size: 1.75rem;
+        }
+
+        .hero-section p {
+            font-size: 1rem;
+        }
+    }
+</style>

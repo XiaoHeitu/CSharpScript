@@ -1,0 +1,407 @@
+@using CSharpScript.Browser
+
+<div class="card">
+    <h3>Document 文档</h3>
+    <p>使用 Document 类可以与浏览器文档对象进行交互。</p>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <strong>页面标题</strong>
+            <span>@documentTitle</span>
+        </div>
+        <div class="info-item">
+            <strong>页面 URL</strong>
+            <span class="text-break">@documentUrl</span>
+        </div>
+        <div class="info-item">
+            <strong>引用页面</strong>
+            <span class="text-break">@documentReferrer</span>
+        </div>
+        <div class="info-item">
+            <strong>就绪状态</strong>
+            <span>@documentReadyState</span>
+        </div>
+        <div class="info-item">
+            <strong>字符集</strong>
+            <span>@documentCharacterSet</span>
+        </div>
+        <div class="info-item">
+            <strong>内容类型</strong>
+            <span>@documentContentType</span>
+        </div>
+        <div class="info-item">
+            <strong>最后修改</strong>
+            <span>@documentLastModified</span>
+        </div>
+        <div class="info-item">
+            <strong>兼容模式</strong>
+            <span>@documentCompatMode</span>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h4>文档属性操作</h4>
+        <div class="input-group">
+            <label>设置标题:</label>
+            <input @bind="newTitle" placeholder="输入新标题..." />
+            <button @onclick="UpdateTitle" class="btn-success">设置</button>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h4>元素查询演示</h4>
+        <div class="input-group">
+            <label>CSS 选择器:</label>
+            <input @bind="querySelectorInput" placeholder="如: .card 或 #app" />
+            <button @onclick="QueryElement" class="btn-primary">查询元素</button>
+        </div>
+        @if (!string.IsNullOrEmpty(queryResult))
+        {
+            <div class="result-box">
+                <strong>查询结果:</strong> @queryResult
+            </div>
+        }
+    </div>
+
+    <div class="demo-section">
+        <h4>获取标签元素数量</h4>
+        <div class="input-group">
+            <label>标签名:</label>
+            <input @bind="tagNameInput" placeholder="如: div, span, button" />
+            <button @onclick="GetElementsByTag" class="btn-primary">获取数量</button>
+        </div>
+        @if (elementsCount >= 0)
+        {
+            <div class="result-box">
+                <strong>元素数量:</strong> @elementsCount
+            </div>
+        }
+    </div>
+
+    <div class="demo-section">
+        <h4>Cookie 操作</h4>
+        <div class="input-group">
+            <label>设置 Cookie:</label>
+            <input @bind="cookieInput" placeholder="key=value" />
+            <button @onclick="SetCookie" class="btn-success">设置</button>
+            <button @onclick="GetCookie" class="btn-primary">读取</button>
+        </div>
+        @if (!string.IsNullOrEmpty(currentCookie))
+        {
+            <div class="result-box">
+                <strong>当前 Cookie:</strong> @currentCookie
+            </div>
+        }
+    </div>
+
+    <div class="demo-section">
+        <h4>创建元素演示</h4>
+        <div class="button-group">
+            <button @onclick="CreateDivElement" class="btn-primary">创建 div</button>
+            <button @onclick="CreateSpanElement" class="btn-primary">创建 span</button>
+            <button @onclick="CreateParagraph" class="btn-primary">创建 p</button>
+        </div>
+        @if (!string.IsNullOrEmpty(createdElementInfo))
+        {
+            <div class="result-box">
+                <strong>创建的元素:</strong> @createdElementInfo
+            </div>
+        }
+    </div>
+
+    <div class="demo-section">
+        <h4>文档状态</h4>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>是否隐藏</strong>
+                <span>@(documentHidden ? "是" : "否")</span>
+            </div>
+            <div class="info-item">
+                <strong>可见性状态</strong>
+                <span>@documentVisibilityState</span>
+            </div>
+            <div class="info-item">
+                <strong>是否有焦点</strong>
+                <span>@(documentHasFocus ? "是" : "否")</span>
+            </div>
+            <div class="info-item">
+                <strong>子元素数量</strong>
+                <span>@documentChildCount</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string documentTitle = "";
+    private string documentUrl = "";
+    private string documentReferrer = "";
+    private string documentReadyState = "";
+    private string documentCharacterSet = "";
+    private string documentContentType = "";
+    private string documentLastModified = "";
+    private string documentCompatMode = "";
+    private bool documentHidden = false;
+    private string documentVisibilityState = "";
+    private bool documentHasFocus = false;
+    private int documentChildCount = 0;
+
+    private string newTitle = "";
+    private string querySelectorInput = "";
+    private string queryResult = "";
+    private string tagNameInput = "";
+    private int elementsCount = -1;
+    private string cookieInput = "";
+    private string currentCookie = "";
+    private string createdElementInfo = "";
+
+    protected override void OnInitialized()
+    {
+        LoadDocumentInfo();
+    }
+
+    private void LoadDocumentInfo()
+    {
+        try
+        {
+            documentTitle = Document.Title;
+        }
+        catch
+        {
+            documentTitle = "(无法获取)";
+        }
+
+        try
+        {
+            documentUrl = Document.URL;
+        }
+        catch
+        {
+            documentUrl = "(无法获取)";
+        }
+
+        try
+        {
+            documentReferrer = string.IsNullOrEmpty(Document.Referrer) ? "(无)" : Document.Referrer;
+        }
+        catch
+        {
+            documentReferrer = "(无法获取)";
+        }
+
+        try
+        {
+            documentReadyState = Document.ReadyState;
+        }
+        catch
+        {
+            documentReadyState = "(无法获取)";
+        }
+
+        try
+        {
+            documentCharacterSet = Document.CharacterSet;
+        }
+        catch
+        {
+            documentCharacterSet = "(无法获取)";
+        }
+
+        try
+        {
+            documentContentType = Document.ContentType;
+        }
+        catch
+        {
+            documentContentType = "(无法获取)";
+        }
+
+        try
+        {
+            documentLastModified = Document.LastModified;
+        }
+        catch
+        {
+            documentLastModified = "(无法获取)";
+        }
+
+        try
+        {
+            documentCompatMode = Document.CompatMode;
+        }
+        catch
+        {
+            documentCompatMode = "(无法获取)";
+        }
+
+        try
+        {
+            documentHidden = Document.Hidden;
+        }
+        catch
+        {
+            documentHidden = false;
+        }
+
+        try
+        {
+            documentVisibilityState = Document.VisibilityState;
+        }
+        catch
+        {
+            documentVisibilityState = "(无法获取)";
+        }
+
+        try
+        {
+            documentHasFocus = Document.HasFocus();
+        }
+        catch
+        {
+            documentHasFocus = false;
+        }
+
+        try
+        {
+            documentChildCount = Document.DocumentChildElementCount;
+        }
+        catch
+        {
+            documentChildCount = 0;
+        }
+    }
+
+    private void UpdateTitle()
+    {
+        if (!string.IsNullOrWhiteSpace(newTitle))
+        {
+            try
+            {
+                Document.Title = newTitle;
+                documentTitle = Document.Title;
+                newTitle = "";
+            }
+            catch (Exception ex)
+            {
+                queryResult = $"设置失败: {ex.Message}";
+            }
+        }
+    }
+
+    private void QueryElement()
+    {
+        if (string.IsNullOrWhiteSpace(querySelectorInput))
+        {
+            queryResult = "请输入选择器";
+            return;
+        }
+
+        try
+        {
+            var element = Document.QuerySelector(querySelectorInput);
+            if (element != null)
+            {
+                queryResult = $"找到元素: <{element.TagName}> id={element.Id ?? "(无)"} class={element.ClassName ?? "(无)"}";
+            }
+            else
+            {
+                queryResult = "未找到匹配的元素";
+            }
+        }
+        catch (Exception ex)
+        {
+            queryResult = $"查询失败: {ex.Message}";
+        }
+    }
+
+    private void GetElementsByTag()
+    {
+        if (string.IsNullOrWhiteSpace(tagNameInput))
+        {
+            elementsCount = -1;
+            return;
+        }
+
+        try
+        {
+            var elements = Document.GetElementsByTagName(tagNameInput);
+            elementsCount = elements.Length;
+        }
+        catch (Exception ex)
+        {
+            elementsCount = -1;
+            queryResult = $"获取失败: {ex.Message}";
+        }
+    }
+
+    private void SetCookie()
+    {
+        if (!string.IsNullOrWhiteSpace(cookieInput))
+        {
+            try
+            {
+                Document.Cookie = cookieInput;
+                GetCookie();
+            }
+            catch (Exception ex)
+            {
+                currentCookie = $"设置失败: {ex.Message}";
+            }
+        }
+    }
+
+    private void GetCookie()
+    {
+        try
+        {
+            currentCookie = Document.Cookie;
+            if (string.IsNullOrEmpty(currentCookie))
+            {
+                currentCookie = "(无 Cookie)";
+            }
+        }
+        catch (Exception ex)
+        {
+            currentCookie = $"读取失败: {ex.Message}";
+        }
+    }
+
+    private void CreateDivElement()
+    {
+        try
+        {
+            var element = Document.CreateElement("div");
+            createdElementInfo = $"创建了 <div> 元素";
+        }
+        catch (Exception ex)
+        {
+            createdElementInfo = $"创建失败: {ex.Message}";
+        }
+    }
+
+    private void CreateSpanElement()
+    {
+        try
+        {
+            var element = Document.CreateElement("span");
+            createdElementInfo = $"创建了 <span> 元素";
+        }
+        catch (Exception ex)
+        {
+            createdElementInfo = $"创建失败: {ex.Message}";
+        }
+    }
+
+    private void CreateParagraph()
+    {
+        try
+        {
+            var element = Document.CreateElement("p");
+            createdElementInfo = $"创建了 <p> 元素";
+        }
+        catch (Exception ex)
+        {
+            createdElementInfo = $"创建失败: {ex.Message}";
+        }
+    }
+}
