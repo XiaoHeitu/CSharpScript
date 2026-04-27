@@ -1,0 +1,66 @@
+@using BrowserConsole = CSharpScript.Browser.Console
+
+<div class="card">
+    <h3>Console 控制台</h3>
+    <p>使用 Console 类可以在浏览器控制台输出各种类型的日志。</p>
+
+    <div class="demo-section">
+        <label>输入日志消息:</label>
+        <input @bind="message" placeholder="输入消息..." />
+        <button @onclick="LogMessage">Log</button>
+        <button class="info" @onclick="InfoMessage">Info</button>
+        <button class="warning" @onclick="WarnMessage">Warn</button>
+        <button class="danger" @onclick="ErrorMessage">Error</button>
+        <button @onclick="DebugMessage">Debug</button>
+    </div>
+
+    <div class="demo-section">
+        <button @onclick="TestGroup">测试分组</button>
+        <button @onclick="TestAssertTrue">Assert (通过)</button>
+        <button class="danger" @onclick="TestAssertFalse">Assert (失败)</button>
+        <button @onclick="TestCount">Count</button>
+        <button @onclick="TestCountReset">Count Reset</button>
+        <button @onclick="TestTimer">Timer</button>
+    </div>
+
+    <div class="demo-section">
+        <button class="danger" @onclick="ClearConsole">Clear</button>
+    </div>
+</div>
+
+@code {
+    private string message = "Hello CSharpScript!";
+
+    private void LogMessage() => BrowserConsole.Log(message);
+    private void InfoMessage() => BrowserConsole.Info(message);
+    private void WarnMessage() => BrowserConsole.Warn(message);
+    private void ErrorMessage() => BrowserConsole.Error(message);
+    private void DebugMessage() => BrowserConsole.Debug(message);
+
+    private void TestGroup()
+    {
+        BrowserConsole.Group("我的分组");
+        BrowserConsole.Log("这是分组内的消息");
+        BrowserConsole.Info("更多信息");
+        BrowserConsole.GroupEnd();
+    }
+
+    private void TestAssertTrue() => BrowserConsole.Assert(true, "这个断言会通过");
+    private void TestAssertFalse() => BrowserConsole.Assert(false, "这个断言会失败");
+
+    private void TestCount()
+    {
+        BrowserConsole.Count("点击次数");
+    }
+
+    private void TestCountReset() => BrowserConsole.CountReset("点击次数");
+
+    private void TestTimer()
+    {
+        BrowserConsole.Time("耗时操作");
+        Thread.Sleep(100);
+        BrowserConsole.TimeEnd("耗时操作");
+    }
+
+    private void ClearConsole() => BrowserConsole.Clear();
+}

@@ -1,0 +1,110 @@
+@using CSharpScript.Browser
+
+<div class="card">
+    <h3>Navigator 浏览器信息</h3>
+    <p>使用 Navigator 类可以获取浏览器的各种信息。</p>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <strong>用户代理</strong>
+            @userAgent
+        </div>
+        <div class="info-item">
+            <strong>应用名称</strong>
+            @appName
+        </div>
+        <div class="info-item">
+            <strong>应用版本</strong>
+            @appVersion
+        </div>
+        <div class="info-item">
+            <strong>代码名称</strong>
+            @appCodeName
+        </div>
+        <div class="info-item">
+            <strong>平台</strong>
+            @platform
+        </div>
+        <div class="info-item">
+            <strong>产品</strong>
+            @product
+        </div>
+        <div class="info-item">
+            <strong>供应商</strong>
+            @vendor
+        </div>
+        <div class="info-item">
+            <strong>语言</strong>
+            @language
+        </div>
+        <div class="info-item">
+            <strong>所有语言</strong>
+            @languages
+        </div>
+        <div class="info-item">
+            <strong>在线状态</strong>
+            @(onLine ? "在线" : "离线")
+        </div>
+        <div class="info-item">
+            <strong>Cookie 启用</strong>
+            @(cookieEnabled ? "是" : "否")
+        </div>
+        <div class="info-item">
+            <strong>触摸点数量</strong>
+            @maxTouchPoints
+        </div>
+        <div class="info-item">
+            <strong>硬件并发</strong>
+            @hardwareConcurrency 核
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <button @onclick="RefreshInfo">刷新信息</button>
+        <button @onclick="CheckJavaEnabled">检查 Java 是否启用</button>
+    </div>
+</div>
+
+@code {
+    private string userAgent = "";
+    private string appName = "";
+    private string appVersion = "";
+    private string appCodeName = "";
+    private string platform = "";
+    private string product = "";
+    private string vendor = "";
+    private string language = "";
+    private string languages = "";
+    private bool onLine;
+    private bool cookieEnabled;
+    private int maxTouchPoints;
+    private int hardwareConcurrency;
+
+    protected override void OnInitialized()
+    {
+        RefreshInfo();
+    }
+
+    private void RefreshInfo()
+    {
+        userAgent = Navigator.GetUserAgent();
+        appName = Navigator.GetAppName();
+        appVersion = Navigator.GetAppVersion();
+        appCodeName = Navigator.GetAppCodeName();
+        platform = Navigator.GetPlatform();
+        product = Navigator.GetProduct();
+        vendor = Navigator.GetVendor();
+        language = Navigator.GetLanguage();
+        languages = Navigator.GetLanguages();
+        onLine = Navigator.GetOnLine();
+        cookieEnabled = Navigator.GetCookieEnabled();
+        maxTouchPoints = Navigator.GetMaxTouchPoints();
+        hardwareConcurrency = Navigator.GetHardwareConcurrency();
+    }
+
+    private void CheckJavaEnabled()
+    {
+        var enabled = Navigator.JavaEnabled();
+        Window.Alert(enabled ? "Java 已启用" : "Java 未启用");
+    }
+}

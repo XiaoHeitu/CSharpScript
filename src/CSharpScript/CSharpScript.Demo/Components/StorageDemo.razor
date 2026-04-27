@@ -1,0 +1,155 @@
+@using BrowserSessionStorage = CSharpScript.Browser.Storage.SessionStorage
+@using BrowserLocalStorage = CSharpScript.Browser.Storage.LocalStorage
+
+<div class="card">
+    <h3>Storage 存储</h3>
+    <p>使用 LocalStorage 和 SessionStorage 可以在浏览器中存储数据。</p>
+
+    <h4>SessionStorage (会话存储)</h4>
+    <div class="demo-section">
+        <label>键:</label>
+        <input @bind="sessionKey" placeholder="键名" />
+        <label>值:</label>
+        <input @bind="sessionValue" placeholder="值" />
+    </div>
+    <div class="demo-section">
+        <button @onclick="SetSessionItem">设置</button>
+        <button @onclick="GetSessionItem">获取</button>
+        <button class="danger" @onclick="RemoveSessionItem">删除</button>
+        <button class="warning" @onclick="ClearSessionStorage">清空</button>
+        <button @onclick="GetSessionLength">获取数量</button>
+    </div>
+    @if (!string.IsNullOrEmpty(sessionResult))
+    {
+        <pre>结果: @sessionResult</pre>
+    }
+
+    <h4>LocalStorage (本地存储)</h4>
+    <div class="demo-section">
+        <label>键:</label>
+        <input @bind="localKey" placeholder="键名" />
+        <label>值:</label>
+        <input @bind="localValue" placeholder="值" />
+    </div>
+    <div class="demo-section">
+        <button @onclick="SetLocalItem">设置</button>
+        <button @onclick="GetLocalItem">获取</button>
+        <button class="danger" @onclick="RemoveLocalItem">删除</button>
+        <button class="warning" @onclick="ClearLocalStorage">清空</button>
+        <button @onclick="GetLocalLength">获取数量</button>
+    </div>
+    @if (!string.IsNullOrEmpty(localResult))
+    {
+        <pre>结果: @localResult</pre>
+    }
+
+    <h4>存储所有内容预览</h4>
+    <div class="demo-section">
+        <button @onclick="ShowAllStorage">显示所有存储</button>
+    </div>
+    @if (!string.IsNullOrEmpty(allStorageResult))
+    {
+        <pre>@allStorageResult</pre>
+    }
+</div>
+
+@code {
+    private string sessionKey = "username";
+    private string sessionValue = "张三";
+    private string sessionResult = "";
+
+    private string localKey = "theme";
+    private string localValue = "dark";
+    private string localResult = "";
+
+    private string allStorageResult = "";
+
+    private void SetSessionItem()
+    {
+        if (!string.IsNullOrEmpty(sessionKey))
+        {
+            BrowserSessionStorage.SetItem(sessionKey, sessionValue);
+            sessionResult = $"已设置 {sessionKey} = {sessionValue}";
+        }
+    }
+
+    private void GetSessionItem()
+    {
+        if (!string.IsNullOrEmpty(sessionKey))
+        {
+            var value = BrowserSessionStorage.GetItem(sessionKey);
+            sessionResult = string.IsNullOrEmpty(value) ? "未找到" : value;
+        }
+    }
+
+    private void RemoveSessionItem()
+    {
+        if (!string.IsNullOrEmpty(sessionKey))
+        {
+            BrowserSessionStorage.RemoveItem(sessionKey);
+            sessionResult = $"已删除 {sessionKey}";
+        }
+    }
+
+    private void ClearSessionStorage()
+    {
+        BrowserSessionStorage.Clear();
+        sessionResult = "已清空 SessionStorage";
+    }
+
+    private void GetSessionLength()
+    {
+        sessionResult = $"SessionStorage 共有 {BrowserSessionStorage.GetLength()} 项";
+    }
+
+    private void SetLocalItem()
+    {
+        if (!string.IsNullOrEmpty(localKey))
+        {
+            BrowserLocalStorage.SetItem(localKey, localValue);
+            localResult = $"已设置 {localKey} = {localValue}";
+        }
+    }
+
+    private void GetLocalItem()
+    {
+        if (!string.IsNullOrEmpty(localKey))
+        {
+            var value = BrowserLocalStorage.GetItem(localKey);
+            localResult = string.IsNullOrEmpty(value) ? "未找到" : value;
+        }
+    }
+
+    private void RemoveLocalItem()
+    {
+        if (!string.IsNullOrEmpty(localKey))
+        {
+            BrowserLocalStorage.RemoveItem(localKey);
+            localResult = $"已删除 {localKey}";
+        }
+    }
+
+    private void ClearLocalStorage()
+    {
+        BrowserLocalStorage.Clear();
+        localResult = "已清空 LocalStorage";
+    }
+
+    private void GetLocalLength()
+    {
+        localResult = $"LocalStorage 共有 {BrowserLocalStorage.GetLength()} 项";
+    }
+
+    private void ShowAllStorage()
+    {
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("=== SessionStorage ===");
+        sb.AppendLine($"数量: {BrowserSessionStorage.GetLength()}");
+        
+        sb.AppendLine();
+        sb.AppendLine("=== LocalStorage ===");
+        sb.AppendLine($"数量: {BrowserLocalStorage.GetLength()}");
+        
+        allStorageResult = sb.ToString();
+    }
+}

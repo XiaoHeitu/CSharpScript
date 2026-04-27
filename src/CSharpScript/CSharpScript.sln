@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36705.20
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpScript", "CSharpScript\CSharpScript.csproj", "{5BD9BE16-F3E3-464F-BA67-5068D3E2D80A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpScript.Demo", "CSharpScript.Demo\CSharpScript.Demo.csproj", "{7D3001E8-16E5-5629-5463-B490D5432E6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{5BD9BE16-F3E3-464F-BA67-5068D3E2D80A}.Release|x64.Build.0 = Release|Any CPU
 		{5BD9BE16-F3E3-464F-BA67-5068D3E2D80A}.Release|x86.ActiveCfg = Release|Any CPU
 		{5BD9BE16-F3E3-464F-BA67-5068D3E2D80A}.Release|x86.Build.0 = Release|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Debug|x64.Build.0 = Debug|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Debug|x86.Build.0 = Debug|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Release|x64.ActiveCfg = Release|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Release|x64.Build.0 = Release|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D3001E8-16E5-5629-5463-B490D5432E6E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,112 @@
+@using CSharpScript.Browser
+
+<div class="card">
+    <h3>Location 位置信息</h3>
+    <p>使用 Location 类可以获取和操作当前页面的 URL 信息。</p>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <strong>完整 URL</strong>
+            @href
+        </div>
+        <div class="info-item">
+            <strong>协议</strong>
+            @protocol
+        </div>
+        <div class="info-item">
+            <strong>主机</strong>
+            @host
+        </div>
+        <div class="info-item">
+            <strong>主机名</strong>
+            @hostname
+        </div>
+        <div class="info-item">
+            <strong>端口</strong>
+            @port
+        </div>
+        <div class="info-item">
+            <strong>路径名</strong>
+            @pathname
+        </div>
+        <div class="info-item">
+            <strong>查询字符串</strong>
+            @search
+        </div>
+        <div class="info-item">
+            <strong>锚点</strong>
+            @hash
+        </div>
+        <div class="info-item">
+            <strong>来源</strong>
+            @origin
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <label>新 URL:</label>
+        <input @bind="newUrl" placeholder="https://example.com" style="width: 300px;" />
+    </div>
+
+    <div class="demo-section">
+        <button @onclick="AssignUrl">assign() 跳转</button>
+        <button @onclick="ReplaceUrl">replace() 替换</button>
+        <button class="warning" @onclick="ReloadPage">reload() 刷新</button>
+    </div>
+
+    <div class="demo-section">
+        <button @onclick="RefreshLocation">刷新 URL 信息</button>
+    </div>
+</div>
+
+@code {
+    private string href = "";
+    private string protocol = "";
+    private string host = "";
+    private string hostname = "";
+    private string port = "";
+    private string pathname = "";
+    private string search = "";
+    private string hash = "";
+    private string origin = "";
+    private string newUrl = "https://www.microsoft.com";
+
+    protected override void OnInitialized()
+    {
+        RefreshLocation();
+    }
+
+    private void RefreshLocation()
+    {
+        href = Location.GetHref();
+        protocol = Location.GetProtocol();
+        host = Location.GetHost();
+        hostname = Location.GetHostname();
+        port = Location.GetPort();
+        pathname = Location.GetPathname();
+        search = Location.GetSearch();
+        hash = Location.GetHash();
+        origin = Location.GetOrigin();
+    }
+
+    private void AssignUrl()
+    {
+        if (!string.IsNullOrEmpty(newUrl))
+        {
+            Location.Assign(newUrl);
+        }
+    }
+
+    private void ReplaceUrl()
+    {
+        if (!string.IsNullOrEmpty(newUrl))
+        {
+            Location.Replace(newUrl);
+        }
+    }
+
+    private void ReloadPage()
+    {
+        Location.Reload();
+    }
+}

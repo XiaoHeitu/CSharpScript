@@ -1,0 +1,104 @@
+@using CSharpScript.Browser
+
+<div class="card">
+    <h3>Window 窗口</h3>
+    <p>使用 Window 类可以与浏览器窗口进行交互。</p>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <strong>内部宽度</strong>
+            @innerWidth px
+        </div>
+        <div class="info-item">
+            <strong>内部高度</strong>
+            @innerHeight px
+        </div>
+        <div class="info-item">
+            <strong>外部宽度</strong>
+            @outerWidth px
+        </div>
+        <div class="info-item">
+            <strong>外部高度</strong>
+            @outerHeight px
+        </div>
+        <div class="info-item">
+            <strong>设备像素比</strong>
+            @devicePixelRatio
+        </div>
+        <div class="info-item">
+            <strong>原点</strong>
+            @origin
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <label>提示消息:</label>
+        <input @bind="alertMessage" placeholder="输入提示消息..." />
+        <button @onclick="ShowAlert">Alert 提示框</button>
+        <button @onclick="ShowConfirm">Confirm 确认框</button>
+        <button @onclick="ShowPrompt">Prompt 输入框</button>
+    </div>
+
+    <div class="demo-section">
+        <button @onclick="ScrollToTop">滚动到顶部</button>
+        <button @onclick="ScrollToBottom">滚动到底部</button>
+        <button @onclick="ScrollByPage">滚动一页</button>
+    </div>
+</div>
+
+@code {
+    private string alertMessage = "Hello from CSharpScript!";
+    private int innerWidth;
+    private int innerHeight;
+    private int outerWidth;
+    private int outerHeight;
+    private double devicePixelRatio;
+    private string origin = "";
+
+    protected override void OnInitialized()
+    {
+        RefreshWindowInfo();
+    }
+
+    private void RefreshWindowInfo()
+    {
+        innerWidth = Window.GetInnerWidth();
+        innerHeight = Window.GetInnerHeight();
+        outerWidth = Window.GetOuterWidth();
+        outerHeight = Window.GetOuterHeight();
+        devicePixelRatio = Window.GetDevicePixelRatio();
+        origin = Window.GetOrigin();
+    }
+
+    private void ShowAlert()
+    {
+        Window.Alert(alertMessage);
+    }
+
+    private void ShowConfirm()
+    {
+        var result = Window.Confirm(alertMessage);
+        Window.Alert(result ? "用户点击了确定" : "用户点击了取消");
+    }
+
+    private void ShowPrompt()
+    {
+        var result = Window.Prompt(alertMessage, "默认值");
+        Window.Alert(string.IsNullOrEmpty(result) ? "用户取消了输入" : $"用户输入了: {result}");
+    }
+
+    private void ScrollToTop()
+    {
+        Window.ScrollTo(0, 0);
+    }
+
+    private void ScrollToBottom()
+    {
+        Window.ScrollTo(0, 9999);
+    }
+
+    private void ScrollByPage()
+    {
+        Window.ScrollBy(0, 500);
+    }
+}
