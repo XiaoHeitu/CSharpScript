@@ -1,4 +1,4 @@
-# 🚀 CSharpScript
+<h1 align="center">🚀 CSharpScript</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=.net" alt=".NET 8.0" height="30">
