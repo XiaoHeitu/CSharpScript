@@ -3,35 +3,27 @@ namespace CSharpScript.Browser;
 [SupportedOSPlatform("browser")]
 public static partial class Location
 {
-    [JSImport("globalThis.location.href")]
-    public static partial string GetHref();
+    public static string Href
+    {
+        get => Reflect.EvalString("location.href");
+        set => Reflect.EvalString($"location.href='{value}'");
+    }
 
-    [JSImport("globalThis.location.href")]
-    public static partial void SetHref(string value);
+    public static string Protocol => Reflect.EvalString("location.protocol");
 
-    [JSImport("globalThis.location.protocol")]
-    public static partial string GetProtocol();
+    public static string Host => Reflect.EvalString("location.host");
 
-    [JSImport("globalThis.location.host")]
-    public static partial string GetHost();
+    public static string Hostname => Reflect.EvalString("location.hostname");
 
-    [JSImport("globalThis.location.hostname")]
-    public static partial string GetHostname();
+    public static string Port => Reflect.EvalString("location.port");
 
-    [JSImport("globalThis.location.port")]
-    public static partial string GetPort();
+    public static string Pathname => Reflect.EvalString("location.pathname");
 
-    [JSImport("globalThis.location.pathname")]
-    public static partial string GetPathname();
+    public static string Search => Reflect.EvalString("location.search");
 
-    [JSImport("globalThis.location.search")]
-    public static partial string GetSearch();
+    public static string Hash => Reflect.EvalString("location.hash");
 
-    [JSImport("globalThis.location.hash")]
-    public static partial string GetHash();
-
-    [JSImport("globalThis.location.origin")]
-    public static partial string GetOrigin();
+    public static string Origin => Reflect.EvalString("location.origin");
 
     [JSImport("globalThis.location.assign")]
     public static partial void Assign(string url);

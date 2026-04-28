@@ -42,44 +42,35 @@ public static partial class Window
     [JSImport("globalThis.window.blur")]
     public static partial void Blur();
 
-    [JSImport("globalThis.window.innerWidth")]
-    public static partial int GetInnerWidth();
+    public static int InnerWidth => Reflect.EvalInt("window.innerWidth");
 
-    [JSImport("globalThis.window.innerHeight")]
-    public static partial int GetInnerHeight();
+    public static int InnerHeight => Reflect.EvalInt("window.innerHeight");
 
-    [JSImport("globalThis.window.outerWidth")]
-    public static partial int GetOuterWidth();
+    public static int OuterWidth => Reflect.EvalInt("window.outerWidth");
 
-    [JSImport("globalThis.window.outerHeight")]
-    public static partial int GetOuterHeight();
+    public static int OuterHeight => Reflect.EvalInt("window.outerHeight");
 
-    [JSImport("globalThis.window.screenX")]
-    public static partial int GetScreenX();
+    public static int ScreenX => Reflect.EvalInt("window.screenX");
 
-    [JSImport("globalThis.window.screenY")]
-    public static partial int GetScreenY();
+    public static int ScreenY => Reflect.EvalInt("window.screenY");
 
-    [JSImport("globalThis.window.devicePixelRatio")]
-    public static partial double GetDevicePixelRatio();
+    public static double DevicePixelRatio => Reflect.EvalDouble("window.devicePixelRatio");
 
-    [JSImport("globalThis.window.origin")]
-    public static partial string GetOrigin();
+    public static string Origin => Reflect.EvalString("window.origin");
 
-    [JSImport("globalThis.window.closed")]
-    public static partial bool GetClosed();
+    public static bool Closed => Reflect.EvalBool("window.closed");
 
-    [JSImport("globalThis.window.name")]
-    public static partial string GetName();
+    public static string Name
+    {
+        get => Reflect.EvalString("window.name");
+        set => Reflect.EvalString($"window.name='{value}'");
+    }
 
-    [JSImport("globalThis.window.name")]
-    public static partial void SetName(string value);
-
-    [JSImport("globalThis.window.status")]
-    public static partial string GetStatus();
-
-    [JSImport("globalThis.window.status")]
-    public static partial void SetStatus(string value);
+    public static string Status
+    {
+        get => Reflect.EvalString("window.status");
+        set => Reflect.EvalString($"window.status='{value}'");
+    }
 
     [JSImport("globalThis.window.resizeTo")]
     public static partial void ResizeTo(int width, int height);

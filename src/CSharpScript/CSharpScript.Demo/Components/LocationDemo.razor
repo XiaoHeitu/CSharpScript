@@ -78,15 +78,15 @@
 
     private void RefreshLocation()
     {
-        href = Location.GetHref();
-        protocol = Location.GetProtocol();
-        host = Location.GetHost();
-        hostname = Location.GetHostname();
-        port = Location.GetPort();
-        pathname = Location.GetPathname();
-        search = Location.GetSearch();
-        hash = Location.GetHash();
-        origin = Location.GetOrigin();
+        href = Location.Href;
+        protocol = Location.Protocol;
+        host = Location.Host;
+        hostname = Location.Hostname;
+        port = Location.Port;
+        pathname = Location.Pathname;
+        search = Location.Search;
+        hash = Location.Hash;
+        origin = Location.Origin;
     }
 
     private void AssignUrl()

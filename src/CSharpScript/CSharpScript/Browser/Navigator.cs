@@ -3,38 +3,27 @@ namespace CSharpScript.Browser;
 [SupportedOSPlatform("browser")]
 public static partial class Navigator
 {
-    [JSImport("globalThis.navigator.userAgent")]
-    public static partial string GetUserAgent();
+    public static string UserAgent => Reflect.EvalString("navigator.userAgent");
 
-    [JSImport("globalThis.navigator.appName")]
-    public static partial string GetAppName();
+    public static string AppName => Reflect.EvalString("navigator.appName");
 
-    [JSImport("globalThis.navigator.appVersion")]
-    public static partial string GetAppVersion();
+    public static string AppVersion => Reflect.EvalString("navigator.appVersion");
 
-    [JSImport("globalThis.navigator.appCodeName")]
-    public static partial string GetAppCodeName();
+    public static string AppCodeName => Reflect.EvalString("navigator.appCodeName");
 
-    [JSImport("globalThis.navigator.platform")]
-    public static partial string GetPlatform();
+    public static string Platform => Reflect.EvalString("navigator.platform");
 
-    [JSImport("globalThis.navigator.product")]
-    public static partial string GetProduct();
+    public static string Product => Reflect.EvalString("navigator.product");
 
-    [JSImport("globalThis.navigator.vendor")]
-    public static partial string GetVendor();
+    public static string Vendor => Reflect.EvalString("navigator.vendor");
 
-    [JSImport("globalThis.navigator.language")]
-    public static partial string GetLanguage();
+    public static string Language => Reflect.EvalString("navigator.language");
 
-    [JSImport("globalThis.navigator.languages")]
-    public static partial string GetLanguages();
+    public static string Languages => Reflect.EvalString("navigator.languages");
 
-    [JSImport("globalThis.navigator.onLine")]
-    public static partial bool GetOnLine();
+    public static bool OnLine => Reflect.EvalBool("navigator.onLine");
 
-    [JSImport("globalThis.navigator.cookieEnabled")]
-    public static partial bool GetCookieEnabled();
+    public static bool CookieEnabled => Reflect.EvalBool("navigator.cookieEnabled");
 
     [JSImport("globalThis.navigator.javaEnabled")]
     public static partial bool JavaEnabled();
@@ -44,4 +33,7 @@ public static partial class Navigator
 
     [JSImport("globalThis.navigator.hardwareConcurrency")]
     public static partial int GetHardwareConcurrency();
+
+    public static int MaxTouchPoints => GetMaxTouchPoints();
+    public static int HardwareConcurrency => GetHardwareConcurrency();
 }

@@ -62,12 +62,12 @@
 
     private void RefreshWindowInfo()
     {
-        innerWidth = Window.GetInnerWidth();
-        innerHeight = Window.GetInnerHeight();
-        outerWidth = Window.GetOuterWidth();
-        outerHeight = Window.GetOuterHeight();
-        devicePixelRatio = Window.GetDevicePixelRatio();
-        origin = Window.GetOrigin();
+        innerWidth = Window.InnerWidth;
+        innerHeight = Window.InnerHeight;
+        outerWidth = Window.OuterWidth;
+        outerHeight = Window.OuterHeight;
+        devicePixelRatio = Window.DevicePixelRatio;
+        origin = Window.Origin;
     }
 
     private void ShowAlert()

@@ -87,19 +87,19 @@
 
     private void RefreshInfo()
     {
-        userAgent = Navigator.GetUserAgent();
-        appName = Navigator.GetAppName();
-        appVersion = Navigator.GetAppVersion();
-        appCodeName = Navigator.GetAppCodeName();
-        platform = Navigator.GetPlatform();
-        product = Navigator.GetProduct();
-        vendor = Navigator.GetVendor();
-        language = Navigator.GetLanguage();
-        languages = Navigator.GetLanguages();
-        onLine = Navigator.GetOnLine();
-        cookieEnabled = Navigator.GetCookieEnabled();
-        maxTouchPoints = Navigator.GetMaxTouchPoints();
-        hardwareConcurrency = Navigator.GetHardwareConcurrency();
+        userAgent = Navigator.UserAgent;
+        appName = Navigator.AppName;
+        appVersion = Navigator.AppVersion;
+        appCodeName = Navigator.AppCodeName;
+        platform = Navigator.Platform;
+        product = Navigator.Product;
+        vendor = Navigator.Vendor;
+        language = Navigator.Language;
+        languages = Navigator.Languages;
+        onLine = Navigator.OnLine;
+        cookieEnabled = Navigator.CookieEnabled;
+        maxTouchPoints = Navigator.MaxTouchPoints;
+        hardwareConcurrency = Navigator.HardwareConcurrency;
     }
 
     private void CheckJavaEnabled()

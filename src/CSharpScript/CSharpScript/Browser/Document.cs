@@ -48,11 +48,12 @@ public static partial class Document
     [JSImport("globalThis.document.createNodeIterator")]
     public static partial IntPtr CreateNodeIteratorImpl(IntPtr root, int whatToShow, IntPtr filter);
 
-    [JSImport("globalThis.document.title")]
-    public static partial string GetTitleImpl();
 
-    [JSImport("globalThis.document.title")]
-    public static partial void SetTitleImpl(string title);
+    public static string Title
+    {
+        get => Reflect.EvalString("document.title");
+        set => Reflect.EvalString($"document.title='{value}'");
+    }
 
     [JSImport("globalThis.document.body")]
     public static partial IntPtr GetBodyImpl();
@@ -63,53 +64,44 @@ public static partial class Document
     [JSImport("globalThis.document.documentElement")]
     public static partial IntPtr GetDocumentElementImpl();
 
-    [JSImport("globalThis.document.cookie")]
-    public static partial string GetCookieImpl();
+    public static string Cookie
+    {
+        get => Reflect.EvalString("document.cookie");
+        set => Reflect.EvalString($"document.cookie='{value}'");
+    }
 
-    [JSImport("globalThis.document.cookie")]
-    public static partial void SetCookieImpl(string value);
+    public static string Domain
+    {
+        get => Reflect.EvalString("document.domain");
+    }
 
-    [JSImport("globalThis.document.domain")]
-    public static partial string GetDomainImpl();
+    public static string Referrer => Reflect.EvalString("document.referrer");
 
-    [JSImport("globalThis.document.referrer")]
-    public static partial string GetReferrerImpl();
+    public static string URL => Reflect.EvalString("document.URL");
 
-    [JSImport("globalThis.document.URL")]
-    public static partial string GetURLImpl();
+    public static string URLUnencoded => Reflect.EvalString("document.URLUnencoded");
 
-    [JSImport("globalThis.document.URLUnencoded")]
-    public static partial string GetURLUnencodedImpl();
+    public static string ReadyState => Reflect.EvalString("document.readyState");
 
-    [JSImport("globalThis.document.readyState")]
-    public static partial string GetReadyStateImpl();
+    public static bool Hidden => Reflect.EvalBool("document.hidden");
 
-    [JSImport("globalThis.document.hidden")]
-    public static partial bool GetHiddenImpl();
+    public static string VisibilityState => Reflect.EvalString("document.visibilityState");
 
-    [JSImport("globalThis.document.visibilityState")]
-    public static partial string GetVisibilityStateImpl();
+    public static string CharacterSet => Reflect.EvalString("document.characterSet");
 
-    [JSImport("globalThis.document.characterSet")]
-    public static partial string GetCharacterSetImpl();
+    public static string ContentType => Reflect.EvalString("document.contentType");
 
-    [JSImport("globalThis.document.contentType")]
-    public static partial string GetContentTypeImpl();
+    public static string InputEncoding => Reflect.EvalString("document.inputEncoding");
 
-    [JSImport("globalThis.document.inputEncoding")]
-    public static partial string GetInputEncodingImpl();
+    public static string LastModified => Reflect.EvalString("document.lastModified");
 
-    [JSImport("globalThis.document.lastModified")]
-    public static partial string GetLastModifiedImpl();
+    public static string CompatMode => Reflect.EvalString("document.compatMode");
 
-    [JSImport("globalThis.document.compatMode")]
-    public static partial string GetCompatModeImpl();
-
-    [JSImport("globalThis.document.designMode")]
-    public static partial string GetDesignModeImpl();
-
-    [JSImport("globalThis.document.designMode")]
-    public static partial void SetDesignModeImpl(string value);
+    public static string DesignMode
+    {
+        get => Reflect.EvalString("document.designMode");
+        set => Reflect.EvalString($"document.designMode='{value}'");
+    }
 
     [JSImport("globalThis.document.write")]
     public static partial void WriteImpl(string? text);
@@ -255,12 +247,6 @@ public static partial class Document
     public static NodeIterator CreateNodeIterator(Element root, int whatToShow, NodeFilter? filter = null) =>
         new(CreateNodeIteratorImpl(root.Handle, whatToShow, filter?.Handle ?? IntPtr.Zero));
 
-    public static string Title
-    {
-        get => GetTitleImpl();
-        set => SetTitleImpl(value);
-    }
-
     public static Element? Body
     {
         get
@@ -286,31 +272,6 @@ public static partial class Document
             var handle = GetDocumentElementImpl();
             return handle == IntPtr.Zero ? null : new Element(handle);
         }
-    }
-
-    public static string Cookie
-    {
-        get => GetCookieImpl();
-        set => SetCookieImpl(value);
-    }
-
-    public static string Domain => GetDomainImpl();
-    public static string Referrer => GetReferrerImpl();
-    public static string URL => GetURLImpl();
-    public static string URLUnencoded => GetURLUnencodedImpl();
-    public static string ReadyState => GetReadyStateImpl();
-    public static bool Hidden => GetHiddenImpl();
-    public static string VisibilityState => GetVisibilityStateImpl();
-    public static string CharacterSet => GetCharacterSetImpl();
-    public static string ContentType => GetContentTypeImpl();
-    public static string InputEncoding => GetInputEncodingImpl();
-    public static string LastModified => GetLastModifiedImpl();
-    public static string CompatMode => GetCompatModeImpl();
-
-    public static string DesignMode
-    {
-        get => GetDesignModeImpl();
-        set => SetDesignModeImpl(value);
     }
 
     public static Element? ActiveElement
