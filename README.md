@@ -3,8 +3,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=.net" alt=".NET 8.0" height="30">
   <img src="https://img.shields.io/badge/WebAssembly-FFF?logo=webassembly&style=for-the-badge" alt="WebAssembly" height="30">
-  <img src="https://img.shields.io/badge/platform-browser-wasm-FF6B6B?style=for-the-badge" alt="Platform" height="30">
-  <img src="https://img.shields.io/github/license/your-username/CSharpScript?style=for-the-badge" alt="License" height="30">
 </p>
 
 > 将浏览器标准 JavaScript API 完整映射到 C#，让 .NET 开发人员能够使用熟悉的 C# 语法操作浏览器原生功能。
