@@ -51,8 +51,8 @@ public static partial class Document
 
     public static string Title
     {
-        get => Reflect.EvalString("document.title");
-        set => Reflect.EvalString($"document.title='{value}'");
+        get => Window.EvalString("document.title");
+        set => Window.EvalString($"document.title='{value}'");
     }
 
     [JSImport("globalThis.document.body")]
@@ -66,41 +66,41 @@ public static partial class Document
 
     public static string Cookie
     {
-        get => Reflect.EvalString("document.cookie");
-        set => Reflect.EvalString($"document.cookie='{value}'");
+        get => Window.EvalString("document.cookie");
+        set => Window.EvalString($"document.cookie='{value}'");
     }
 
     public static string Domain
     {
-        get => Reflect.EvalString("document.domain");
+        get => Window.EvalString("document.domain");
     }
 
-    public static string Referrer => Reflect.EvalString("document.referrer");
+    public static string Referrer => Window.EvalString("document.referrer");
 
-    public static string URL => Reflect.EvalString("document.URL");
+    public static string URL => Window.EvalString("document.URL");
 
-    public static string URLUnencoded => Reflect.EvalString("document.URLUnencoded");
+    public static string URLUnencoded => Window.EvalString("document.URLUnencoded");
 
-    public static string ReadyState => Reflect.EvalString("document.readyState");
+    public static string ReadyState => Window.EvalString("document.readyState");
 
-    public static bool Hidden => Reflect.EvalBool("document.hidden");
+    public static bool Hidden => Window.EvalBool("document.hidden");
 
-    public static string VisibilityState => Reflect.EvalString("document.visibilityState");
+    public static string VisibilityState => Window.EvalString("document.visibilityState");
 
-    public static string CharacterSet => Reflect.EvalString("document.characterSet");
+    public static string CharacterSet => Window.EvalString("document.characterSet");
 
-    public static string ContentType => Reflect.EvalString("document.contentType");
+    public static string ContentType => Window.EvalString("document.contentType");
 
-    public static string InputEncoding => Reflect.EvalString("document.inputEncoding");
+    public static string InputEncoding => Window.EvalString("document.inputEncoding");
 
-    public static string LastModified => Reflect.EvalString("document.lastModified");
+    public static string LastModified => Window.EvalString("document.lastModified");
 
-    public static string CompatMode => Reflect.EvalString("document.compatMode");
+    public static string CompatMode => Window.EvalString("document.compatMode");
 
     public static string DesignMode
     {
-        get => Reflect.EvalString("document.designMode");
-        set => Reflect.EvalString($"document.designMode='{value}'");
+        get => Window.EvalString("document.designMode");
+        set => Window.EvalString($"document.designMode='{value}'");
     }
 
     [JSImport("globalThis.document.write")]

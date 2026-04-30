@@ -42,34 +42,34 @@ public static partial class Window
     [JSImport("globalThis.window.blur")]
     public static partial void Blur();
 
-    public static int InnerWidth => Reflect.EvalInt("window.innerWidth");
+    public static int InnerWidth => EvalInt("window.innerWidth");
 
-    public static int InnerHeight => Reflect.EvalInt("window.innerHeight");
+    public static int InnerHeight => EvalInt("window.innerHeight");
 
-    public static int OuterWidth => Reflect.EvalInt("window.outerWidth");
+    public static int OuterWidth => EvalInt("window.outerWidth");
 
-    public static int OuterHeight => Reflect.EvalInt("window.outerHeight");
+    public static int OuterHeight => EvalInt("window.outerHeight");
 
-    public static int ScreenX => Reflect.EvalInt("window.screenX");
+    public static int ScreenX => EvalInt("window.screenX");
 
-    public static int ScreenY => Reflect.EvalInt("window.screenY");
+    public static int ScreenY => EvalInt("window.screenY");
 
-    public static double DevicePixelRatio => Reflect.EvalDouble("window.devicePixelRatio");
+    public static double DevicePixelRatio => EvalDouble("window.devicePixelRatio");
 
-    public static string Origin => Reflect.EvalString("window.origin");
+    public static string Origin => EvalString("window.origin");
 
-    public static bool Closed => Reflect.EvalBool("window.closed");
+    public static bool Closed => EvalBool("window.closed");
 
     public static string Name
     {
-        get => Reflect.EvalString("window.name");
-        set => Reflect.EvalString($"window.name='{value}'");
+        get => EvalString("window.name");
+        set => EvalString($"window.name='{value}'");
     }
 
     public static string Status
     {
-        get => Reflect.EvalString("window.status");
-        set => Reflect.EvalString($"window.status='{value}'");
+        get => EvalString("window.status");
+        set => EvalString($"window.status='{value}'");
     }
 
     [JSImport("globalThis.window.resizeTo")]
@@ -83,4 +83,16 @@ public static partial class Window
 
     [JSImport("globalThis.window.moveBy")]
     public static partial void MoveBy(int x, int y);
+
+    [JSImport("globalThis.eval")]
+    public static partial string EvalString(string code);
+
+    [JSImport("globalThis.eval")]
+    public static partial int EvalInt(string code);
+
+    [JSImport("globalThis.eval")]
+    public static partial bool EvalBool(string code);
+
+    [JSImport("globalThis.eval")]
+    public static partial double EvalDouble(string code);
 }

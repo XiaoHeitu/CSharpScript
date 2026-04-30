@@ -92,16 +92,4 @@ public static partial class Reflect
 
     [JSImport("globalThis.Reflect.apply")]
     public static partial IntPtr Apply(IntPtr target, IntPtr thisArgument, IntPtr argumentsList);
-
-    [JSImport("globalThis.eval")]
-    public static partial string EvalString([JSMarshalAs<JSType.String>] string code);
-
-    [JSImport("globalThis.eval")]
-    public static partial int EvalInt([JSMarshalAs<JSType.String>] string code);
-
-    [JSImport("globalThis.eval")]
-    public static partial bool EvalBool([JSMarshalAs<JSType.String>] string code);
-
-    [JSImport("globalThis.eval")]
-    public static partial double EvalDouble([JSMarshalAs<JSType.String>] string code);
 }

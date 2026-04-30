@@ -3,7 +3,7 @@ namespace CSharpScript.Browser;
 [SupportedOSPlatform("browser")]
 public static partial class History
 {
-    public static int Length => Reflect.EvalInt("history.length");
+    public static int Length => Window.EvalInt("history.length");
 
     [JSImport("globalThis.history.back")]
     public static partial void Back();
