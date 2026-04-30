@@ -1,7 +1,12 @@
+using Microsoft.JSInterop;
+using Microsoft.JSInterop.Implementation;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+
 namespace CSharpScript.Browser;
 
 [SupportedOSPlatform("browser")]
-public static partial class Window
+public partial class Window
 {
     [JSImport("globalThis.window.alert")]
     public static partial void Alert(string message);

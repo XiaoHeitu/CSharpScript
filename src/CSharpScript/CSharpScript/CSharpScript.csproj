@@ -8,4 +8,8 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="8.0.26" />
+  </ItemGroup>
+
 </Project>

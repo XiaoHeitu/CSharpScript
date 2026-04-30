@@ -1,7 +1,9 @@
+using System.Runtime.CompilerServices;
+
 namespace CSharpScript.Browser;
 
 [SupportedOSPlatform("browser")]
-public static partial class Document
+public partial class Document
 {
     [JSImport("globalThis.document.getElementById")]
     public static partial IntPtr GetElementByIdImpl(string id);
