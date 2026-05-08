@@ -1,4 +1,4 @@
-@using CSharpScript.Browser
+﻿@using CSharpScript.Browser
 
 <div class="card">
     <h3>Document 文档</h3>
@@ -164,7 +164,7 @@
     {
         try
         {
-            documentTitle = Document.Title;
+            documentTitle = Window.Instance.Document.Title;
         }
         catch
         {
@@ -173,7 +173,7 @@
 
         try
         {
-            documentUrl = Document.URL;
+            documentUrl = Window.Instance.Document.URL;
         }
         catch
         {
@@ -182,7 +182,7 @@
 
         try
         {
-            documentReferrer = string.IsNullOrEmpty(Document.Referrer) ? "(无)" : Document.Referrer;
+            documentReferrer = string.IsNullOrEmpty(Window.Instance.Document.Referrer) ? "(无)" : Window.Instance.Document.Referrer;
         }
         catch
         {
@@ -191,7 +191,7 @@
 
         try
         {
-            documentReadyState = Document.ReadyState;
+            documentReadyState = Window.Instance.Document.ReadyState;
         }
         catch
         {
@@ -200,7 +200,7 @@
 
         try
         {
-            documentCharacterSet = Document.CharacterSet;
+            documentCharacterSet = Window.Instance.Document.CharacterSet;
         }
         catch
         {
@@ -209,7 +209,7 @@
 
         try
         {
-            documentContentType = Document.ContentType;
+            documentContentType = Window.Instance.Document.ContentType;
         }
         catch
         {
@@ -218,7 +218,7 @@
 
         try
         {
-            documentLastModified = Document.LastModified;
+            documentLastModified = Window.Instance.Document.LastModified;
         }
         catch
         {
@@ -227,7 +227,7 @@
 
         try
         {
-            documentCompatMode = Document.CompatMode;
+            documentCompatMode = Window.Instance.Document.CompatMode;
         }
         catch
         {
@@ -236,7 +236,7 @@
 
         try
         {
-            documentHidden = Document.Hidden;
+            documentHidden = Window.Instance.Document.Hidden;
         }
         catch
         {
@@ -245,7 +245,7 @@
 
         try
         {
-            documentVisibilityState = Document.VisibilityState;
+            documentVisibilityState = Window.Instance.Document.VisibilityState;
         }
         catch
         {
@@ -254,7 +254,7 @@
 
         try
         {
-            documentHasFocus = Document.HasFocus();
+            documentHasFocus = Window.Instance.Document.HasFocus();
         }
         catch
         {
@@ -263,7 +263,7 @@
 
         try
         {
-            documentChildCount = Document.DocumentChildElementCount;
+            documentChildCount = Window.Instance.Document.DocumentChildElementCount;
         }
         catch
         {
@@ -277,8 +277,8 @@
         {
             try
             {
-                Document.Title = newTitle;
-                documentTitle = Document.Title;
+                Window.Instance.Document.Title = newTitle;
+                documentTitle = Window.Instance.Document.Title;
                 newTitle = "";
             }
             catch (Exception ex)
@@ -298,7 +298,7 @@
 
         try
         {
-            var element = Document.QuerySelector(querySelectorInput);
+            var element = Window.Instance.Document.QuerySelector(querySelectorInput);
             if (element != null)
             {
                 queryResult = $"找到元素: <{element.TagName}> id={element.Id ?? "(无)"} class={element.ClassName ?? "(无)"}";
@@ -324,7 +324,7 @@
 
         try
         {
-            var elements = Document.GetElementsByTagName(tagNameInput);
+            var elements = Window.Instance.Document.GetElementsByTagName(tagNameInput);
             elementsCount = elements.Length;
         }
         catch (Exception ex)
@@ -340,7 +340,7 @@
         {
             try
             {
-                Document.Cookie = cookieInput;
+                Window.Instance.Document.Cookie = cookieInput;
                 GetCookie();
             }
             catch (Exception ex)
@@ -354,7 +354,7 @@
     {
         try
         {
-            currentCookie = Document.Cookie;
+            currentCookie = Window.Instance.Document.Cookie;
             if (string.IsNullOrEmpty(currentCookie))
             {
                 currentCookie = "(无 Cookie)";
@@ -370,7 +370,7 @@
     {
         try
         {
-            var element = Document.CreateElement("div");
+            var element = Window.Instance.Document.CreateElement("div");
             createdElementInfo = $"创建了 <div> 元素";
         }
         catch (Exception ex)
@@ -383,7 +383,7 @@
     {
         try
         {
-            var element = Document.CreateElement("span");
+            var element = Window.Instance.Document.CreateElement("span");
             createdElementInfo = $"创建了 <span> 元素";
         }
         catch (Exception ex)
@@ -396,7 +396,7 @@
     {
         try
         {
-            var element = Document.CreateElement("p");
+            var element = Window.Instance.Document.CreateElement("p");
             createdElementInfo = $"创建了 <p> 元素";
         }
         catch (Exception ex)

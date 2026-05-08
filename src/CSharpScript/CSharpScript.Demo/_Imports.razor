@@ -9,7 +9,13 @@
 @using CSharpScript.Demo.Shared
 @using CSharpScript.Demo.Components
 @using CSharpScript.Browser
+@using CSharpScript.Browser.Api
+@using CSharpScript.Browser.DOM
+@using CSharpScript.Browser.Event
+@using CSharpScript.Browser.CSS
 @using CSharpScript.Browser.Storage
-@using static CSharpScript.Browser.Console
-@using static CSharpScript.Browser.Storage.SessionStorage
-@using static CSharpScript.Browser.Storage.LocalStorage
+@using BrowserConsole = CSharpScript.Browser.Api.Console
+@using BrowserNavigator = CSharpScript.Browser.Api.Navigator
+@using BrowserLocation = CSharpScript.Browser.Api.Location
+@using BrowserWindow = CSharpScript.Browser.Api.Window
+@using BrowserDocument = CSharpScript.Browser.Api.Document

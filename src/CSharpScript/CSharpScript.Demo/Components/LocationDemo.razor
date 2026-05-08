@@ -1,4 +1,4 @@
-@using CSharpScript.Browser
+﻿@using CSharpScript.Browser
 
 <div class="card">
     <h3>Location 位置信息</h3>
@@ -78,22 +78,22 @@
 
     private void RefreshLocation()
     {
-        href = Location.Href;
-        protocol = Location.Protocol;
-        host = Location.Host;
-        hostname = Location.Hostname;
-        port = Location.Port;
-        pathname = Location.Pathname;
-        search = Location.Search;
-        hash = Location.Hash;
-        origin = Location.Origin;
+        href = Window.Instance.Location.Href;
+        protocol = Window.Instance.Location.Protocol;
+        host = Window.Instance.Location.Host;
+        hostname = Window.Instance.Location.Hostname;
+        port = Window.Instance.Location.Port;
+        pathname = Window.Instance.Location.Pathname;
+        search = Window.Instance.Location.Search;
+        hash = Window.Instance.Location.Hash;
+        origin = Window.Instance.Location.Origin;
     }
 
     private void AssignUrl()
     {
         if (!string.IsNullOrEmpty(newUrl))
         {
-            Location.Assign(newUrl);
+            Window.Instance.Location.Assign(newUrl);
         }
     }
 
@@ -101,12 +101,12 @@
     {
         if (!string.IsNullOrEmpty(newUrl))
         {
-            Location.Replace(newUrl);
+            Window.Instance.Location.Replace(newUrl);
         }
     }
 
     private void ReloadPage()
     {
-        Location.Reload();
+        Window.Instance.Location.Reload();
     }
 }

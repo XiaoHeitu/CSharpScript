@@ -1,4 +1,4 @@
-@using CSharpScript.Browser
+﻿@using CSharpScript.Browser
 
 <div class="card">
     <h3>Navigator 浏览器信息</h3>
@@ -87,24 +87,24 @@
 
     private void RefreshInfo()
     {
-        userAgent = Navigator.UserAgent;
-        appName = Navigator.AppName;
-        appVersion = Navigator.AppVersion;
-        appCodeName = Navigator.AppCodeName;
-        platform = Navigator.Platform;
-        product = Navigator.Product;
-        vendor = Navigator.Vendor;
-        language = Navigator.Language;
-        languages = Navigator.Languages;
-        onLine = Navigator.OnLine;
-        cookieEnabled = Navigator.CookieEnabled;
-        maxTouchPoints = Navigator.MaxTouchPoints;
-        hardwareConcurrency = Navigator.HardwareConcurrency;
+        userAgent = Window.Instance.Navigator.UserAgent;
+        appName = Window.Instance.Navigator.AppName;
+        appVersion = Window.Instance.Navigator.AppVersion;
+        appCodeName = Window.Instance.Navigator.AppCodeName;
+        platform = Window.Instance.Navigator.Platform;
+        product = Window.Instance.Navigator.Product;
+        vendor = Window.Instance.Navigator.Vendor;
+        language = Window.Instance.Navigator.Language;
+        languages = Window.Instance.Navigator.Languages;
+        onLine = Window.Instance.Navigator.OnLine;
+        cookieEnabled = Window.Instance.Navigator.CookieEnabled;
+        maxTouchPoints = Window.Instance.Navigator.MaxTouchPoints;
+        hardwareConcurrency = Window.Instance.Navigator.HardwareConcurrency;
     }
 
     private void CheckJavaEnabled()
     {
-        var enabled = Navigator.JavaEnabled();
+        var enabled = Window.Instance.Navigator.JavaEnabled();
         Window.Alert(enabled ? "Java 已启用" : "Java 未启用");
     }
 }
