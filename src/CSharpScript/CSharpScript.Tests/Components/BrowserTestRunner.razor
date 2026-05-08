@@ -1,0 +1,143 @@
+@using System.Diagnostics
+@using System.Reflection
+@using System.Text.Json
+@using CSharpScript.Tests.TestInfrastructure
+<div class="runner">
+    <div class="summary">
+        <h1>CSharpScript Browser Tests</h1>
+        <div class="summary-stats">
+            <div class="summary-stat">
+                <div class="summary-label">总数</div>
+                <div class="summary-value">@_totalCount</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-label">通过</div>
+                <div class="summary-value passed">@_passedCount</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-label">失败</div>
+                <div class="summary-value failed">@_failedCount</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-label">已执行</div>
+                <div class="summary-value">@_results.Count</div>
+            </div>
+        </div>
+        @if (!_completed)
+        {
+            <p>正在执行测试...</p>
+        }
+        else if (_results.Any(x => !x.Passed))
+        {
+            <p class="failed">存在失败用例，请检查下方详情。</p>
+        }
+        else
+        {
+            <p class="passed">全部测试已通过。</p>
+        }
+    </div>
+
+    <div class="result-list">
+        @foreach (var result in _results)
+        {
+            <div class="result-item @(result.Passed ? "passed" : "failed")">
+                <strong>@result.Name</strong> (@result.DurationMs.ToString("0.00") ms)
+                @if (!string.IsNullOrWhiteSpace(result.Message))
+                {
+                    <div class="message">@result.Message</div>
+                }
+            </div>
+        }
+    </div>
+
+    <textarea id="results-json" data-results="@JsonSerializer.Serialize(_results)" style="width: 100%; min-height: 220px; margin-top: 16px;">@JsonSerializer.Serialize(_results)</textarea>
+</div>
+
+@code {
+    private readonly List<BrowserTestResult> _results = new();
+    private bool _started;
+    private bool _completed;
+    private int _totalCount;
+    private int _passedCount;
+    private int _failedCount;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || _started)
+        {
+            return;
+        }
+
+        _started = true;
+        await RunTestsAsync();
+    }
+
+    private async Task RunTestsAsync()
+    {
+        var testMethods = typeof(Program).Assembly
+            .GetTypes()
+            .Where(type => type.IsClass && !type.IsAbstract)
+            .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static))
+            .Where(method => method.GetCustomAttribute<FactAttribute>() is not null)
+            .Where(method => method.GetParameters().Length == 0)
+            .OrderBy(method => method.DeclaringType!.FullName)
+            .ThenBy(method => method.Name)
+            .ToList();
+
+        _totalCount = testMethods.Count;
+
+        foreach (var method in testMethods)
+        {
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                BrowserTestContext.Reset();
+                var instance = method.IsStatic ? null : Activator.CreateInstance(method.DeclaringType!);
+                await InvokeAsync(method, instance);
+                _results.Add(new BrowserTestResult
+                {
+                    Name = $"{method.DeclaringType!.Name}.{method.Name}",
+                    Passed = true,
+                    DurationMs = sw.Elapsed.TotalMilliseconds,
+                });
+            }
+            catch (Exception ex)
+            {
+                var error = ex is TargetInvocationException tie && tie.InnerException is not null
+                    ? tie.InnerException
+                    : ex;
+
+                _results.Add(new BrowserTestResult
+                {
+                    Name = $"{method.DeclaringType!.Name}.{method.Name}",
+                    Passed = false,
+                    Message = error.ToString(),
+                    DurationMs = sw.Elapsed.TotalMilliseconds,
+                });
+            }
+
+            _passedCount = _results.Count(x => x.Passed);
+            _failedCount = _results.Count(x => !x.Passed);
+            await InvokeAsync(StateHasChanged);
+        }
+
+        _completed = true;
+        TestJs.PublishSummary(_totalCount, _failedCount);
+        TestJs.PublishResultsJson(JsonSerializer.Serialize(_results));
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private static async Task InvokeAsync(MethodInfo method, object? instance)
+    {
+        var result = method.Invoke(instance, Array.Empty<object>());
+        switch (result)
+        {
+            case Task task:
+                await task;
+                break;
+            case ValueTask valueTask:
+                await valueTask;
+                break;
+        }
+    }
+}

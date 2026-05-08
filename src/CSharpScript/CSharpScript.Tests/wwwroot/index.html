@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSharpScript Tests</title>
+    <base href="/" />
+    <script src="test-setup.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 16px;
+            background: #f7f7f7;
+        }
+
+        .runner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .summary {
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(100px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .summary-stat {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .summary-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .summary-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .passed {
+            color: #0a7f35;
+        }
+
+        .failed {
+            color: #b42318;
+        }
+
+        .result-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .result-item {
+            background: white;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            white-space: pre-wrap;
+        }
+
+        .result-item .message {
+            margin-top: 8px;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        #test-fixture {
+            position: fixed;
+            left: -10000px;
+            top: -10000px;
+            width: 1200px;
+            height: 1200px;
+            overflow: auto;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">正在启动测试...</div>
+    <div id="test-fixture"></div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+</html>

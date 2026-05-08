@@ -6,7 +6,7 @@ namespace CSharpScript.Core.Storage;
 [SupportedOSPlatform("browser")]
 internal partial class LocalStorageCore
 {
-    [JSImport("globalThis.localStorage.length")]
+    [JSImport("globalThis.Storage.prototype.length")]
     public static partial int GetLength();
 
     [JSImport("globalThis.localStorage.key")]

@@ -1,4 +1,4 @@
-﻿using Microsoft.JSInterop;
+using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
 
 namespace CSharpScript.Core.Storage;
@@ -6,7 +6,7 @@ namespace CSharpScript.Core.Storage;
 [SupportedOSPlatform("browser")]
 internal partial class SessionStorageCore
 {
-    [JSImport("globalThis.sessionStorage.length")]
+    [JSImport("globalThis.Storage.prototype.length")]
     public static partial int GetLength();
 
     [JSImport("globalThis.sessionStorage.key")]
