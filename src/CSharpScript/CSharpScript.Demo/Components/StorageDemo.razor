@@ -67,7 +67,7 @@
     {
         if (!string.IsNullOrEmpty(sessionKey))
         {
-            BrowserWindow.Instance.SessionStorage.SetItem(sessionKey, sessionValue);
+            Window.Instance.SessionStorage.SetItem(sessionKey, sessionValue);
             sessionResult = $"已设置 {sessionKey} = {sessionValue}";
         }
     }
@@ -76,7 +76,7 @@
     {
         if (!string.IsNullOrEmpty(sessionKey))
         {
-            var value = BrowserWindow.Instance.SessionStorage.GetItem(sessionKey);
+            var value = Window.Instance.SessionStorage.GetItem(sessionKey);
             sessionResult = string.IsNullOrEmpty(value) ? "未找到" : value;
         }
     }
@@ -85,27 +85,27 @@
     {
         if (!string.IsNullOrEmpty(sessionKey))
         {
-            BrowserWindow.Instance.SessionStorage.RemoveItem(sessionKey);
+            Window.Instance.SessionStorage.RemoveItem(sessionKey);
             sessionResult = $"已删除 {sessionKey}";
         }
     }
 
     private void ClearSessionStorage()
     {
-        BrowserWindow.Instance.SessionStorage.Clear();
+        Window.Instance.SessionStorage.Clear();
         sessionResult = "已清空 SessionStorage";
     }
 
     private void GetSessionLength()
     {
-        sessionResult = $"SessionStorage 共有 {BrowserWindow.Instance.SessionStorage.GetLength()} 项";
+        sessionResult = $"SessionStorage 共有 {Window.Instance.SessionStorage.GetLength()} 项";
     }
 
     private void SetLocalItem()
     {
         if (!string.IsNullOrEmpty(localKey))
         {
-            BrowserWindow.Instance.LocalStorage.SetItem(localKey, localValue);
+            Window.Instance.LocalStorage.SetItem(localKey, localValue);
             localResult = $"已设置 {localKey} = {localValue}";
         }
     }
@@ -114,7 +114,7 @@
     {
         if (!string.IsNullOrEmpty(localKey))
         {
-            var value = BrowserWindow.Instance.LocalStorage.GetItem(localKey);
+            var value = Window.Instance.LocalStorage.GetItem(localKey);
             localResult = string.IsNullOrEmpty(value) ? "未找到" : value;
         }
     }
@@ -123,31 +123,31 @@
     {
         if (!string.IsNullOrEmpty(localKey))
         {
-            BrowserWindow.Instance.LocalStorage.RemoveItem(localKey);
+            Window.Instance.LocalStorage.RemoveItem(localKey);
             localResult = $"已删除 {localKey}";
         }
     }
 
     private void ClearLocalStorage()
     {
-        BrowserWindow.Instance.LocalStorage.Clear();
+        Window.Instance.LocalStorage.Clear();
         localResult = "已清空 LocalStorage";
     }
 
     private void GetLocalLength()
     {
-        localResult = $"LocalStorage 共有 {BrowserWindow.Instance.LocalStorage.GetLength()} 项";
+        localResult = $"LocalStorage 共有 {Window.Instance.LocalStorage.GetLength()} 项";
     }
 
     private void ShowAllStorage()
     {
         var sb = new System.Text.StringBuilder();
         sb.AppendLine("=== SessionStorage ===");
-        sb.AppendLine($"数量: {BrowserWindow.Instance.SessionStorage.GetLength()}");
+        sb.AppendLine($"数量: {Window.Instance.SessionStorage.GetLength()}");
         
         sb.AppendLine();
         sb.AppendLine("=== LocalStorage ===");
-        sb.AppendLine($"数量: {BrowserWindow.Instance.LocalStorage.GetLength()}");
+        sb.AppendLine($"数量: {Window.Instance.LocalStorage.GetLength()}");
         
         allStorageResult = sb.ToString();
     }

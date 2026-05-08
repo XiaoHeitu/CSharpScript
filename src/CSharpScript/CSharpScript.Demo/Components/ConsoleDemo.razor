@@ -31,36 +31,36 @@
 @code {
     private string message = "Hello CSharpScript!";
 
-    private void LogMessage() => BrowserWindow.Instance.Console.Log(message);
-    private void InfoMessage() => BrowserWindow.Instance.Console.Info(message);
-    private void WarnMessage() => BrowserWindow.Instance.Console.Warn(message);
-    private void ErrorMessage() => BrowserWindow.Instance.Console.Error(message);
-    private void DebugMessage() => BrowserWindow.Instance.Console.Debug(message);
+    private void LogMessage() => Window.Instance.Console.Log(message);
+    private void InfoMessage() => Window.Instance.Console.Info(message);
+    private void WarnMessage() => Window.Instance.Console.Warn(message);
+    private void ErrorMessage() => Window.Instance.Console.Error(message);
+    private void DebugMessage() => Window.Instance.Console.Debug(message);
 
     private void TestGroup()
     {
-        BrowserWindow.Instance.Console.Group("我的分组");
-        BrowserWindow.Instance.Console.Log("这是分组内的消息");
-        BrowserWindow.Instance.Console.Info("更多信息");
-        BrowserWindow.Instance.Console.GroupEnd();
+        Window.Instance.Console.Group("我的分组");
+        Window.Instance.Console.Log("这是分组内的消息");
+        Window.Instance.Console.Info("更多信息");
+        Window.Instance.Console.GroupEnd();
     }
 
-    private void TestAssertTrue() => BrowserWindow.Instance.Console.Assert(true, "这个断言会通过");
-    private void TestAssertFalse() => BrowserWindow.Instance.Console.Assert(false, "这个断言会失败");
+    private void TestAssertTrue() => Window.Instance.Console.Assert(true, "这个断言会通过");
+    private void TestAssertFalse() => Window.Instance.Console.Assert(false, "这个断言会失败");
 
     private void TestCount()
     {
-        BrowserWindow.Instance.Console.Count("点击次数");
+        Window.Instance.Console.Count("点击次数");
     }
 
-    private void TestCountReset() => BrowserWindow.Instance.Console.CountReset("点击次数");
+    private void TestCountReset() => Window.Instance.Console.CountReset("点击次数");
 
     private void TestTimer()
     {
-        BrowserWindow.Instance.Console.Time("耗时操作");
+        Window.Instance.Console.Time("耗时操作");
         Thread.Sleep(100);
-        BrowserWindow.Instance.Console.TimeEnd("耗时操作");
+        Window.Instance.Console.TimeEnd("耗时操作");
     }
 
-    private void ClearConsole() => BrowserWindow.Instance.Console.Clear();
+    private void ClearConsole() => Window.Instance.Console.Clear();
 }
