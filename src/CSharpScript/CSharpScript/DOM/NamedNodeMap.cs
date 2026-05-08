@@ -1,7 +1,7 @@
-using System.Runtime.CompilerServices;
-using CSharpScript.Browser.Core.DOM;
+﻿using System.Runtime.CompilerServices;
+using CSharpScript.Core.DOM;
 
-namespace CSharpScript.Browser.DOM;
+namespace CSharpScript.DOM;
 
 [SupportedOSPlatform("browser")]
 public partial class NamedNodeMap

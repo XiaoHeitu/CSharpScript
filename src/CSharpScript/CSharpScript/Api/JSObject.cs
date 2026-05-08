@@ -1,8 +1,8 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using CSharpScript.Browser.Core.Api;
+using CSharpScript.Core.Api;
 
-namespace CSharpScript.Browser.Api;
+namespace CSharpScript.Api;
 
 [SupportedOSPlatform("browser")]
 public partial class JSObject

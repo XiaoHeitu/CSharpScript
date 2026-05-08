@@ -1,10 +1,10 @@
-using System.Runtime.CompilerServices;
-using CSharpScript.Browser.DOM;
-using CSharpScript.Browser.Event;
-using CSharpScript.Browser.CSS;
-using CSharpScript.Browser.Core.Api;
+﻿using System.Runtime.CompilerServices;
+using CSharpScript.DOM;
+using CSharpScript.Event;
+using CSharpScript.CSS;
+using CSharpScript.Core.Api;
 
-namespace CSharpScript.Browser.Api;
+namespace CSharpScript.Api;
 
 [SupportedOSPlatform("browser")]
 public partial class Document

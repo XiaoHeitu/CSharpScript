@@ -1,7 +1,7 @@
-using System.Runtime.CompilerServices;
-using CSharpScript.Browser.Core.Api;
+﻿using System.Runtime.CompilerServices;
+using CSharpScript.Core.Api;
 
-namespace CSharpScript.Browser.Api;
+namespace CSharpScript.Api;
 
 [SupportedOSPlatform("browser")]
 public partial class Location

@@ -1,8 +1,8 @@
-using CSharpScript.Browser.Event;
-using CSharpScript.Browser.CSS;
-using CSharpScript.Browser.Core.DOM;
+﻿using CSharpScript.Event;
+using CSharpScript.CSS;
+using CSharpScript.Core.DOM;
 
-namespace CSharpScript.Browser.DOM;
+namespace CSharpScript.DOM;
 
 [SupportedOSPlatform("browser")]
 public partial class Element

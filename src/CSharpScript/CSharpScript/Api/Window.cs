@@ -1,11 +1,11 @@
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 using Microsoft.JSInterop.Implementation;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using CSharpScript.Browser.Storage;
-using CSharpScript.Browser.Core.Api;
+using CSharpScript.Storage;
+using CSharpScript.Core.Api;
 
-namespace CSharpScript.Browser.Api;
+namespace CSharpScript.Api;
 
 [SupportedOSPlatform("browser")]
 public partial class Window

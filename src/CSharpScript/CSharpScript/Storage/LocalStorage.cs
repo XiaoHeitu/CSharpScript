@@ -1,7 +1,7 @@
-using System.Runtime.CompilerServices;
-using CSharpScript.Browser.Core.Storage;
+﻿using System.Runtime.CompilerServices;
+using CSharpScript.Core.Storage;
 
-namespace CSharpScript.Browser.Storage;
+namespace CSharpScript.Storage;
 
 [SupportedOSPlatform("browser")]
 public partial class LocalStorage

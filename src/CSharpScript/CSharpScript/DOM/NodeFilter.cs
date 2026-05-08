@@ -1,6 +1,6 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-namespace CSharpScript.Browser.DOM;
+namespace CSharpScript.DOM;
 
 [SupportedOSPlatform("browser")]
 public partial class NodeFilter

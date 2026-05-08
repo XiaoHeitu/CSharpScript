@@ -1,8 +1,8 @@
-using System.Runtime.CompilerServices;
-using CSharpScript.Browser.DOM;
-using CSharpScript.Browser.Core.Event;
+﻿using System.Runtime.CompilerServices;
+using CSharpScript.DOM;
+using CSharpScript.Core.Event;
 
-namespace CSharpScript.Browser.Event;
+namespace CSharpScript.Event;
 
 [SupportedOSPlatform("browser")]
 public partial class Touch

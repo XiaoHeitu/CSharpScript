@@ -1,6 +1,6 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-namespace CSharpScript.Browser.Core.DOM;
+namespace CSharpScript.Core.DOM;
 
 [SupportedOSPlatform("browser")]
 internal partial class NodeFilterCore

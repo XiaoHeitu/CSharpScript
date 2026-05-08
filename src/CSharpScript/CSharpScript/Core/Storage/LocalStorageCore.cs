@@ -1,7 +1,7 @@
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
 
-namespace CSharpScript.Browser.Core.Storage;
+namespace CSharpScript.Core.Storage;
 
 [SupportedOSPlatform("browser")]
 internal partial class LocalStorageCore

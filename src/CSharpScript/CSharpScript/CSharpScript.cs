@@ -1,6 +1,4 @@
-using CSharpScript.Browser;
-
-namespace CSharpScript
+﻿namespace CSharpScript
 {
     [SupportedOSPlatform("browser")]
     public class CSharpScriptTest

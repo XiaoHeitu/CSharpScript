@@ -1,7 +1,7 @@
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
 
-namespace CSharpScript.Browser.Core.Event;
+namespace CSharpScript.Core.Event;
 
 [SupportedOSPlatform("browser")]
 internal partial class DragEventCore

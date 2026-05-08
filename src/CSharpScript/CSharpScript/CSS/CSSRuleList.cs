@@ -1,7 +1,7 @@
-using System.Runtime.CompilerServices;
-using CSharpScript.Browser.Core.CSS;
+﻿using System.Runtime.CompilerServices;
+using CSharpScript.Core.CSS;
 
-namespace CSharpScript.Browser.CSS;
+namespace CSharpScript.CSS;
 
 [SupportedOSPlatform("browser")]
 public partial class CSSRuleList

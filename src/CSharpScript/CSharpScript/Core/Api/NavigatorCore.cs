@@ -1,6 +1,6 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-namespace CSharpScript.Browser.Core.Api;
+namespace CSharpScript.Core.Api;
 
 [SupportedOSPlatform("browser")]
 internal partial class NavigatorCore
