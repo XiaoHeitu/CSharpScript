@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.CSS;
 
@@ -10,7 +11,7 @@ internal partial class CSSStyleSheetCore
     public static partial string? GetHref(IntPtr handle);
 
     [JSImport("globalThis.CSSStyleSheet.prototype.ownerNode")]
-    public static partial IntPtr GetOwnerNode(IntPtr handle);
+    public static partial JSObject GetOwnerNode(IntPtr handle);
 
     [JSImport("globalThis.CSSStyleSheet.prototype.title")]
     public static partial string? GetTitle(IntPtr handle);

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.CSS;
 
 namespace CSharpScript.CSS;
@@ -6,9 +7,9 @@ namespace CSharpScript.CSS;
 [SupportedOSPlatform("browser")]
 public partial class CSSStyleDeclaration
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public CSSStyleDeclaration(IntPtr handle)
+    public CSSStyleDeclaration(JSObject handle)
     {
         _jsHandle = handle;
     }

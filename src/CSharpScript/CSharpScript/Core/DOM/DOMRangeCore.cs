@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.DOM;
 
@@ -7,44 +8,44 @@ namespace CSharpScript.Core.DOM;
 internal partial class DOMRangeCore
 {
     [JSImport("globalThis.Range.prototype.startContainer")]
-    public static partial IntPtr GetStartContainer(IntPtr handle);
+    public static partial JSObject GetStartContainer(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.startOffset")]
-    public static partial int GetStartOffset(IntPtr handle);
+    public static partial int GetStartOffset(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.endContainer")]
-    public static partial IntPtr GetEndContainer(IntPtr handle);
+    public static partial JSObject GetEndContainer(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.endOffset")]
-    public static partial int GetEndOffset(IntPtr handle);
+    public static partial int GetEndOffset(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.commonAncestorContainer")]
-    public static partial IntPtr GetCommonAncestorContainer(IntPtr handle);
+    public static partial JSObject GetCommonAncestorContainer(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.collapsed")]
-    public static partial bool GetCollapsed(IntPtr handle);
+    public static partial bool GetCollapsed(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.compareBoundaryPoints")]
-    public static partial int CompareBoundaryPoints(IntPtr handle, string how, IntPtr sourceRange);
+    public static partial int CompareBoundaryPoints(JSObject handle, string how, JSObject sourceRange);
 
     [JSImport("globalThis.Range.prototype.deleteContents")]
-    public static partial void DeleteContents(IntPtr handle);
+    public static partial void DeleteContents(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.extractContents")]
-    public static partial IntPtr ExtractContents(IntPtr handle);
+    public static partial JSObject ExtractContents(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.cloneContents")]
-    public static partial IntPtr CloneContents(IntPtr handle);
+    public static partial JSObject CloneContents(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.insertNode")]
-    public static partial void InsertNode(IntPtr handle, IntPtr newNode);
+    public static partial void InsertNode(JSObject handle, JSObject newNode);
 
     [JSImport("globalThis.Range.prototype.surroundContents")]
-    public static partial void SurroundContents(IntPtr handle, IntPtr newParent);
+    public static partial void SurroundContents(JSObject handle, JSObject newParent);
 
     [JSImport("globalThis.Range.prototype.cloneRange")]
-    public static partial IntPtr CloneRange(IntPtr handle);
+    public static partial JSObject CloneRange(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.toString")]
-    public static partial string RangeToString(IntPtr handle);
+    public static partial string RangeToString(JSObject handle);
 }

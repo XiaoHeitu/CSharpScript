@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class DOMRange
 {
-    protected internal readonly IntPtr _jsHandle;
+    protected internal readonly JSObject _jsHandle;
 
-    public DOMRange(IntPtr handle)
+    public DOMRange(JSObject handle)
     {
         _jsHandle = handle;
     }

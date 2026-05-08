@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.DOM;
 
@@ -7,26 +8,26 @@ namespace CSharpScript.Core.DOM;
 internal partial class NamedNodeMapCore
 {
     [JSImport("globalThis.NamedNodeMap.prototype.length")]
-    public static partial int GetLength(IntPtr handle);
+    public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.NamedNodeMap.prototype.item")]
-    public static partial IntPtr ItemNamedNodeMap(IntPtr handle, int index);
+    public static partial JSObject ItemNamedNodeMap(JSObject handle, int index);
 
     [JSImport("globalThis.NamedNodeMap.prototype.getNamedItem")]
-    public static partial IntPtr GetNamedItem(IntPtr handle, string name);
+    public static partial JSObject GetNamedItem(JSObject handle, string name);
 
     [JSImport("globalThis.NamedNodeMap.prototype.setNamedItem")]
-    public static partial IntPtr SetNamedItem(IntPtr handle, IntPtr node);
+    public static partial JSObject SetNamedItem(JSObject handle, JSObject node);
 
     [JSImport("globalThis.NamedNodeMap.prototype.removeNamedItem")]
-    public static partial IntPtr RemoveNamedItem(IntPtr handle, string name);
+    public static partial JSObject RemoveNamedItem(JSObject handle, string name);
 
     [JSImport("globalThis.NamedNodeMap.prototype.getNamedItemNS")]
-    public static partial IntPtr GetNamedItemNS(IntPtr handle, string? ns, string localName);
+    public static partial JSObject GetNamedItemNS(JSObject handle, string? ns, string localName);
 
     [JSImport("globalThis.NamedNodeMap.prototype.setNamedItemNS")]
-    public static partial IntPtr SetNamedItemNS(IntPtr handle, IntPtr node);
+    public static partial JSObject SetNamedItemNS(JSObject handle, JSObject node);
 
     [JSImport("globalThis.NamedNodeMap.prototype.removeNamedItemNS")]
-    public static partial IntPtr RemoveNamedItemNS(IntPtr handle, string? ns, string localName);
+    public static partial JSObject RemoveNamedItemNS(JSObject handle, string? ns, string localName);
 }

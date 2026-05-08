@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.DOM;
 using CSharpScript.Core.DOM;
 using CSharpScript.Core.Event;
@@ -8,9 +9,9 @@ namespace CSharpScript.Event;
 [SupportedOSPlatform("browser")]
 public partial class BrowserEvent
 {
-    protected internal readonly IntPtr _jsHandle;
+    protected internal readonly JSObject _jsHandle;
 
-    public BrowserEvent(IntPtr handle)
+    public BrowserEvent(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -22,7 +23,7 @@ public partial class BrowserEvent
         get
         {
             var handle = EventCore.GetTarget(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -31,7 +32,7 @@ public partial class BrowserEvent
         get
         {
             var handle = EventCore.GetCurrentTarget(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -43,7 +44,7 @@ public partial class BrowserEvent
     public double TimeStamp => EventCore.GetTimeStamp(_jsHandle);
     public bool IsTrusted => EventCore.GetIsTrusted(_jsHandle);
 
-    public IntPtr Handle => _jsHandle;
+    public JSObject Handle => _jsHandle;
 
     public void StopPropagation() => EventCore.StopPropagation(_jsHandle);
     public void StopImmediatePropagation() => EventCore.StopImmediatePropagation(_jsHandle);

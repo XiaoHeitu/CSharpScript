@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class NodeList
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public NodeList(IntPtr handle)
+    public NodeList(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -20,13 +21,13 @@ public partial class NodeList
         get
         {
             var handle = NodeListCore.ItemNodeList(_jsHandle, index);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
     public Element? GetItem(int index)
     {
         var handle = NodeListCore.ItemNodeList(_jsHandle, index);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 }

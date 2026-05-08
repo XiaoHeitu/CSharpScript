@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.DOM;
 using CSharpScript.Core.Event;
 
@@ -7,9 +8,9 @@ namespace CSharpScript.Event;
 [SupportedOSPlatform("browser")]
 public partial class Touch
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public Touch(IntPtr handle)
+    public Touch(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -21,7 +22,7 @@ public partial class Touch
         get
         {
             var handle = TouchCore.GetTarget(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 

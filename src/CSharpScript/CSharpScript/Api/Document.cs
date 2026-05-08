@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.DOM;
 using CSharpScript.Event;
 using CSharpScript.CSS;
@@ -29,36 +30,36 @@ public partial class Document
 
     private Document() { }
 
-    public IntPtr GetElementByIdImpl(string id) => DocumentCore.GetElementByIdImpl(id);
+    public JSObject GetElementByIdImpl(string id) => DocumentCore.GetElementByIdImpl(id);
 
-    public IntPtr GetElementsByClassNameImpl(string className) => DocumentCore.GetElementsByClassNameImpl(className);
+    public JSObject GetElementsByClassNameImpl(string className) => DocumentCore.GetElementsByClassNameImpl(className);
 
-    public IntPtr GetElementsByTagNameImpl(string tagName) => DocumentCore.GetElementsByTagNameImpl(tagName);
+    public JSObject GetElementsByTagNameImpl(string tagName) => DocumentCore.GetElementsByTagNameImpl(tagName);
 
-    public IntPtr GetElementsByNameImpl(string name) => DocumentCore.GetElementsByNameImpl(name);
+    public JSObject GetElementsByNameImpl(string name) => DocumentCore.GetElementsByNameImpl(name);
 
-    public IntPtr QuerySelectorImpl(string selectors) => DocumentCore.QuerySelectorImpl(selectors);
+    public JSObject QuerySelectorImpl(string selectors) => DocumentCore.QuerySelectorImpl(selectors);
 
-    public IntPtr QuerySelectorAllImpl(string selectors) => DocumentCore.QuerySelectorAllImpl(selectors);
+    public JSObject QuerySelectorAllImpl(string selectors) => DocumentCore.QuerySelectorAllImpl(selectors);
 
-    public IntPtr CreateElementImpl(string tagName) => DocumentCore.CreateElementImpl(tagName);
+    public JSObject CreateElementImpl(string tagName) => DocumentCore.CreateElementImpl(tagName);
 
-    public IntPtr CreateTextNodeImpl(string text) => DocumentCore.CreateTextNodeImpl(text);
+    public JSObject CreateTextNodeImpl(string text) => DocumentCore.CreateTextNodeImpl(text);
 
-    public IntPtr CreateDocumentFragmentImpl() => DocumentCore.CreateDocumentFragmentImpl();
+    public JSObject CreateDocumentFragmentImpl() => DocumentCore.CreateDocumentFragmentImpl();
 
-    public IntPtr CreateCommentImpl(string text) => DocumentCore.CreateCommentImpl(text);
+    public JSObject CreateCommentImpl(string text) => DocumentCore.CreateCommentImpl(text);
 
-    public IntPtr CreateAttributeImpl(string name) => DocumentCore.CreateAttributeImpl(name);
+    public JSObject CreateAttributeImpl(string name) => DocumentCore.CreateAttributeImpl(name);
 
-    public IntPtr CreateEventImpl(string eventType) => DocumentCore.CreateEventImpl(eventType);
+    public JSObject CreateEventImpl(string eventType) => DocumentCore.CreateEventImpl(eventType);
 
-    public IntPtr CreateRangeImpl() => DocumentCore.CreateRangeImpl();
+    public JSObject CreateRangeImpl() => DocumentCore.CreateRangeImpl();
 
-    public IntPtr CreateTreeWalkerImpl(IntPtr root, int whatToShow, IntPtr filter, bool entityReferenceExpansion) =>
+    public JSObject CreateTreeWalkerImpl(JSObject root, int whatToShow, IntPtr filter, bool entityReferenceExpansion) =>
         DocumentCore.CreateTreeWalkerImpl(root, whatToShow, filter, entityReferenceExpansion);
 
-    public IntPtr CreateNodeIteratorImpl(IntPtr root, int whatToShow, IntPtr filter) =>
+    public JSObject CreateNodeIteratorImpl(JSObject root, int whatToShow, IntPtr filter) =>
         DocumentCore.CreateNodeIteratorImpl(root, whatToShow, filter);
 
     public string Title
@@ -67,9 +68,9 @@ public partial class Document
         set => Window.EvalString($"document.title='{value}'");
     }
 
-    public IntPtr GetBodyImpl() => DocumentCore.GetBodyImpl();
-    public IntPtr GetHeadImpl() => DocumentCore.GetHeadImpl();
-    public IntPtr GetDocumentElementImpl() => DocumentCore.GetDocumentElementImpl();
+    public JSObject GetBodyImpl() => DocumentCore.GetBodyImpl();
+    public JSObject GetHeadImpl() => DocumentCore.GetHeadImpl();
+    public JSObject GetDocumentElementImpl() => DocumentCore.GetDocumentElementImpl();
 
     public string Cookie
     {
@@ -104,10 +105,10 @@ public partial class Document
 
     public void Close() => DocumentCore.Close();
     public bool HasFocus() => DocumentCore.HasFocus();
-    public IntPtr ImportNodeImpl(IntPtr importedNode, bool deep) => DocumentCore.ImportNodeImpl(importedNode, deep);
-    public IntPtr AdoptNodeImpl(IntPtr node) => DocumentCore.AdoptNodeImpl(node);
+    public JSObject ImportNodeImpl(JSObject importedNode, bool deep) => DocumentCore.ImportNodeImpl(importedNode, deep);
+    public JSObject AdoptNodeImpl(JSObject node) => DocumentCore.AdoptNodeImpl(node);
     public void Normalize() => DocumentCore.Normalize();
-    public IntPtr GetSelectionImpl() => DocumentCore.GetSelectionImpl();
+    public JSObject GetSelectionImpl() => DocumentCore.GetSelectionImpl();
 
     public bool ExecCommandImpl(string commandId, bool showUI, string? value) =>
         DocumentCore.ExecCommandImpl(commandId, showUI, value);
@@ -115,33 +116,33 @@ public partial class Document
     public bool QueryCommandEnabledImpl(string commandId) => DocumentCore.QueryCommandEnabledImpl(commandId);
     public bool QueryCommandSupportedImpl(string commandId) => DocumentCore.QueryCommandSupportedImpl(commandId);
 
-    public IntPtr GetActiveElementImpl() => DocumentCore.GetActiveElementImpl();
-    public IntPtr GetFullscreenElementImpl() => DocumentCore.GetFullscreenElementImpl();
-    public IntPtr GetPointerLockElementImpl() => DocumentCore.GetPointerLockElementImpl();
-    public IntPtr GetScriptsImpl() => DocumentCore.GetScriptsImpl();
-    public IntPtr GetImagesImpl() => DocumentCore.GetImagesImpl();
-    public IntPtr GetLinksImpl() => DocumentCore.GetLinksImpl();
-    public IntPtr GetFormsImpl() => DocumentCore.GetFormsImpl();
-    public IntPtr GetAnchorsImpl() => DocumentCore.GetAnchorsImpl();
-    public IntPtr GetEmbedsImpl() => DocumentCore.GetEmbedsImpl();
-    public IntPtr GetPluginsImpl() => DocumentCore.GetPluginsImpl();
+    public JSObject GetActiveElementImpl() => DocumentCore.GetActiveElementImpl();
+    public JSObject GetFullscreenElementImpl() => DocumentCore.GetFullscreenElementImpl();
+    public JSObject GetPointerLockElementImpl() => DocumentCore.GetPointerLockElementImpl();
+    public JSObject GetScriptsImpl() => DocumentCore.GetScriptsImpl();
+    public JSObject GetImagesImpl() => DocumentCore.GetImagesImpl();
+    public JSObject GetLinksImpl() => DocumentCore.GetLinksImpl();
+    public JSObject GetFormsImpl() => DocumentCore.GetFormsImpl();
+    public JSObject GetAnchorsImpl() => DocumentCore.GetAnchorsImpl();
+    public JSObject GetEmbedsImpl() => DocumentCore.GetEmbedsImpl();
+    public JSObject GetPluginsImpl() => DocumentCore.GetPluginsImpl();
     public IntPtr GetStyleSheetsImpl() => DocumentCore.GetStyleSheetsImpl();
     public string GetPreferredStyleSheetSetImpl() => DocumentCore.GetPreferredStyleSheetSetImpl();
     public string GetSelectedStyleSheetSetImpl() => DocumentCore.GetSelectedStyleSheetSetImpl();
     public void SetSelectedStyleSheetSetImpl(string value) => DocumentCore.SetSelectedStyleSheetSetImpl(value);
 
-    public IntPtr GetDocumentChildrenImpl() => DocumentCore.GetDocumentChildrenImpl();
+    public JSObject GetDocumentChildrenImpl() => DocumentCore.GetDocumentChildrenImpl();
     public int GetDocumentChildElementCountImpl() => DocumentCore.GetDocumentChildElementCountImpl();
-    public IntPtr GetDocumentFirstElementChildImpl() => DocumentCore.GetDocumentFirstElementChildImpl();
-    public IntPtr GetDocumentLastElementChildImpl() => DocumentCore.GetDocumentLastElementChildImpl();
+    public JSObject GetDocumentFirstElementChildImpl() => DocumentCore.GetDocumentFirstElementChildImpl();
+    public JSObject GetDocumentLastElementChildImpl() => DocumentCore.GetDocumentLastElementChildImpl();
 
-    public IntPtr DocCreateTreeWalker(IntPtr root, int whatToShow, IntPtr filter) =>
+    public JSObject DocCreateTreeWalker(JSObject root, int whatToShow, IntPtr filter) =>
         DocumentCore.DocCreateTreeWalker(root, whatToShow, filter);
 
     public Element? GetElementById(string id)
     {
         var handle = GetElementByIdImpl(id);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public HTMLCollection GetElementsByClassName(string className) =>
@@ -156,7 +157,7 @@ public partial class Document
     public Element? QuerySelector(string selectors)
     {
         var handle = QuerySelectorImpl(selectors);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public NodeList QuerySelectorAll(string selectors) =>
@@ -194,7 +195,7 @@ public partial class Document
         get
         {
             var handle = GetBodyImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -203,7 +204,7 @@ public partial class Document
         get
         {
             var handle = GetHeadImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -212,7 +213,7 @@ public partial class Document
         get
         {
             var handle = GetDocumentElementImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -221,7 +222,7 @@ public partial class Document
         get
         {
             var handle = GetActiveElementImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -230,7 +231,7 @@ public partial class Document
         get
         {
             var handle = GetFullscreenElementImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -239,7 +240,7 @@ public partial class Document
         get
         {
             var handle = GetPointerLockElementImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -267,7 +268,7 @@ public partial class Document
         get
         {
             var handle = GetDocumentFirstElementChildImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -276,7 +277,7 @@ public partial class Document
         get
         {
             var handle = GetDocumentLastElementChildImpl();
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 

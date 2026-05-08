@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.DOM;
 
@@ -7,20 +8,20 @@ namespace CSharpScript.Core.DOM;
 internal partial class NodeIteratorCore
 {
     [JSImport("globalThis.NodeIterator.prototype.root")]
-    public static partial IntPtr GetRoot(IntPtr handle);
+    public static partial JSObject GetRoot(JSObject handle);
 
     [JSImport("globalThis.NodeIterator.prototype.referenceNode")]
-    public static partial IntPtr GetReferenceNode(IntPtr handle);
+    public static partial JSObject GetReferenceNode(JSObject handle);
 
     [JSImport("globalThis.NodeIterator.prototype.pointerBeforeReferenceNode")]
-    public static partial bool GetPointerBeforeReferenceNode(IntPtr handle);
+    public static partial bool GetPointerBeforeReferenceNode(JSObject handle);
 
     [JSImport("globalThis.NodeIterator.prototype.nextNode")]
-    public static partial IntPtr NextNode(IntPtr handle);
+    public static partial JSObject NextNode(JSObject handle);
 
     [JSImport("globalThis.NodeIterator.prototype.previousNode")]
-    public static partial IntPtr PreviousNode(IntPtr handle);
+    public static partial JSObject PreviousNode(JSObject handle);
 
     [JSImport("globalThis.NodeIterator.prototype.detach")]
-    public static partial void Detach(IntPtr handle);
+    public static partial void Detach(JSObject handle);
 }

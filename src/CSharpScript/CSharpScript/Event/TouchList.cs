@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.Event;
 
 namespace CSharpScript.Event;
@@ -6,9 +7,9 @@ namespace CSharpScript.Event;
 [SupportedOSPlatform("browser")]
 public partial class TouchList
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public TouchList(IntPtr handle)
+    public TouchList(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -20,13 +21,13 @@ public partial class TouchList
         get
         {
             var handle = TouchListCore.ItemTouchList(_jsHandle, index);
-            return handle == IntPtr.Zero ? null : new Touch(handle);
+            return handle == null ? null : new Touch(handle);
         }
     }
 
     public Touch? GetItem(int index)
     {
         var handle = TouchListCore.ItemTouchList(_jsHandle, index);
-        return handle == IntPtr.Zero ? null : new Touch(handle);
+        return handle == null ? null : new Touch(handle);
     }
 }

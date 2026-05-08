@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.DOM;
 
@@ -7,32 +8,32 @@ namespace CSharpScript.Core.DOM;
 internal partial class TreeWalkerCore
 {
     [JSImport("globalThis.TreeWalker.prototype.root")]
-    public static partial IntPtr GetRoot(IntPtr handle);
+    public static partial JSObject GetRoot(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.currentNode")]
-    public static partial IntPtr GetCurrentNode(IntPtr handle);
+    public static partial JSObject GetCurrentNode(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.currentNode")]
-    public static partial void SetCurrentNode(IntPtr handle, IntPtr value);
+    public static partial void SetCurrentNode(JSObject handle, JSObject value);
 
     [JSImport("globalThis.TreeWalker.prototype.nextNode")]
-    public static partial IntPtr NextNode(IntPtr handle);
+    public static partial JSObject NextNode(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.previousNode")]
-    public static partial IntPtr PreviousNode(IntPtr handle);
+    public static partial JSObject PreviousNode(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.nextSibling")]
-    public static partial IntPtr NextSibling(IntPtr handle);
+    public static partial JSObject NextSibling(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.previousSibling")]
-    public static partial IntPtr PreviousSibling(IntPtr handle);
+    public static partial JSObject PreviousSibling(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.parentNode")]
-    public static partial IntPtr ParentNode(IntPtr handle);
+    public static partial JSObject ParentNode(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.firstChild")]
-    public static partial IntPtr FirstChild(IntPtr handle);
+    public static partial JSObject FirstChild(JSObject handle);
 
     [JSImport("globalThis.TreeWalker.prototype.lastChild")]
-    public static partial IntPtr LastChild(IntPtr handle);
+    public static partial JSObject LastChild(JSObject handle);
 }

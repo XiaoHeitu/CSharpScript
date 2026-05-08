@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class Attr
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public Attr(IntPtr handle)
+    public Attr(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -29,14 +30,14 @@ public partial class Attr
 
     public bool Specified => AttrCore.GetSpecified(_jsHandle);
 
-    public IntPtr Handle => _jsHandle;
+    public JSObject Handle => _jsHandle;
 
     public Element? OwnerElement
     {
         get
         {
             var handle = AttrCore.GetOwnerElement(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 

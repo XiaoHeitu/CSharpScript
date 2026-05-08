@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.Api;
 
@@ -7,58 +8,58 @@ namespace CSharpScript.Core.Api;
 internal partial class DocumentCore
 {
     [JSImport("globalThis.document.getElementById")]
-    public static partial IntPtr GetElementByIdImpl(string id);
+    public static partial JSObject GetElementByIdImpl(string id);
 
     [JSImport("globalThis.document.getElementsByClassName")]
-    public static partial IntPtr GetElementsByClassNameImpl(string className);
+    public static partial JSObject GetElementsByClassNameImpl(string className);
 
     [JSImport("globalThis.document.getElementsByTagName")]
-    public static partial IntPtr GetElementsByTagNameImpl(string tagName);
+    public static partial JSObject GetElementsByTagNameImpl(string tagName);
 
     [JSImport("globalThis.document.getElementsByName")]
-    public static partial IntPtr GetElementsByNameImpl(string name);
+    public static partial JSObject GetElementsByNameImpl(string name);
 
     [JSImport("globalThis.document.querySelector")]
-    public static partial IntPtr QuerySelectorImpl(string selectors);
+    public static partial JSObject QuerySelectorImpl(string selectors);
 
     [JSImport("globalThis.document.querySelectorAll")]
-    public static partial IntPtr QuerySelectorAllImpl(string selectors);
+    public static partial JSObject QuerySelectorAllImpl(string selectors);
 
     [JSImport("globalThis.document.createElement")]
-    public static partial IntPtr CreateElementImpl(string tagName);
+    public static partial JSObject CreateElementImpl(string tagName);
 
     [JSImport("globalThis.document.createTextNode")]
-    public static partial IntPtr CreateTextNodeImpl(string text);
+    public static partial JSObject CreateTextNodeImpl(string text);
 
     [JSImport("globalThis.document.createDocumentFragment")]
-    public static partial IntPtr CreateDocumentFragmentImpl();
+    public static partial JSObject CreateDocumentFragmentImpl();
 
     [JSImport("globalThis.document.createComment")]
-    public static partial IntPtr CreateCommentImpl(string text);
+    public static partial JSObject CreateCommentImpl(string text);
 
     [JSImport("globalThis.document.createAttribute")]
-    public static partial IntPtr CreateAttributeImpl(string name);
+    public static partial JSObject CreateAttributeImpl(string name);
 
     [JSImport("globalThis.document.createEvent")]
-    public static partial IntPtr CreateEventImpl(string eventType);
+    public static partial JSObject CreateEventImpl(string eventType);
 
     [JSImport("globalThis.document.createRange")]
-    public static partial IntPtr CreateRangeImpl();
+    public static partial JSObject CreateRangeImpl();
 
     [JSImport("globalThis.document.createTreeWalker")]
-    public static partial IntPtr CreateTreeWalkerImpl(IntPtr root, int whatToShow, IntPtr filter, bool entityReferenceExpansion);
+    public static partial JSObject CreateTreeWalkerImpl(JSObject root, int whatToShow, IntPtr filter, bool entityReferenceExpansion);
 
     [JSImport("globalThis.document.createNodeIterator")]
-    public static partial IntPtr CreateNodeIteratorImpl(IntPtr root, int whatToShow, IntPtr filter);
+    public static partial JSObject CreateNodeIteratorImpl(JSObject root, int whatToShow, IntPtr filter);
 
     [JSImport("globalThis.document.body")]
-    public static partial IntPtr GetBodyImpl();
+    public static partial JSObject GetBodyImpl();
 
     [JSImport("globalThis.document.head")]
-    public static partial IntPtr GetHeadImpl();
+    public static partial JSObject GetHeadImpl();
 
     [JSImport("globalThis.document.documentElement")]
-    public static partial IntPtr GetDocumentElementImpl();
+    public static partial JSObject GetDocumentElementImpl();
 
     [JSImport("globalThis.document.write")]
     public static partial void WriteImpl(string? text);
@@ -76,16 +77,16 @@ internal partial class DocumentCore
     public static partial bool HasFocus();
 
     [JSImport("globalThis.document.importNode")]
-    public static partial IntPtr ImportNodeImpl(IntPtr importedNode, bool deep);
+    public static partial JSObject ImportNodeImpl(JSObject importedNode, bool deep);
 
     [JSImport("globalThis.document.adoptNode")]
-    public static partial IntPtr AdoptNodeImpl(IntPtr node);
+    public static partial JSObject AdoptNodeImpl(JSObject node);
 
     [JSImport("globalThis.document.normalize")]
     public static partial void Normalize();
 
     [JSImport("globalThis.document.getSelection")]
-    public static partial IntPtr GetSelectionImpl();
+    public static partial JSObject GetSelectionImpl();
 
     [JSImport("globalThis.document.execCommand")]
     public static partial bool ExecCommandImpl(string commandId, bool showUI, string? value);
@@ -97,34 +98,34 @@ internal partial class DocumentCore
     public static partial bool QueryCommandSupportedImpl(string commandId);
 
     [JSImport("globalThis.document.activeElement")]
-    public static partial IntPtr GetActiveElementImpl();
+    public static partial JSObject GetActiveElementImpl();
 
     [JSImport("globalThis.document.fullscreenElement")]
-    public static partial IntPtr GetFullscreenElementImpl();
+    public static partial JSObject GetFullscreenElementImpl();
 
     [JSImport("globalThis.document.pointerLockElement")]
-    public static partial IntPtr GetPointerLockElementImpl();
+    public static partial JSObject GetPointerLockElementImpl();
 
     [JSImport("globalThis.document.scripts")]
-    public static partial IntPtr GetScriptsImpl();
+    public static partial JSObject GetScriptsImpl();
 
     [JSImport("globalThis.document.images")]
-    public static partial IntPtr GetImagesImpl();
+    public static partial JSObject GetImagesImpl();
 
     [JSImport("globalThis.document.links")]
-    public static partial IntPtr GetLinksImpl();
+    public static partial JSObject GetLinksImpl();
 
     [JSImport("globalThis.document.forms")]
-    public static partial IntPtr GetFormsImpl();
+    public static partial JSObject GetFormsImpl();
 
     [JSImport("globalThis.document.anchors")]
-    public static partial IntPtr GetAnchorsImpl();
+    public static partial JSObject GetAnchorsImpl();
 
     [JSImport("globalThis.document.embeds")]
-    public static partial IntPtr GetEmbedsImpl();
+    public static partial JSObject GetEmbedsImpl();
 
     [JSImport("globalThis.document.plugins")]
-    public static partial IntPtr GetPluginsImpl();
+    public static partial JSObject GetPluginsImpl();
 
     [JSImport("globalThis.document.styleSheets")]
     public static partial IntPtr GetStyleSheetsImpl();
@@ -139,17 +140,17 @@ internal partial class DocumentCore
     public static partial void SetSelectedStyleSheetSetImpl(string value);
 
     [JSImport("globalThis.document.children")]
-    public static partial IntPtr GetDocumentChildrenImpl();
+    public static partial JSObject GetDocumentChildrenImpl();
 
     [JSImport("globalThis.document.childElementCount")]
     public static partial int GetDocumentChildElementCountImpl();
 
     [JSImport("globalThis.document.firstElementChild")]
-    public static partial IntPtr GetDocumentFirstElementChildImpl();
+    public static partial JSObject GetDocumentFirstElementChildImpl();
 
     [JSImport("globalThis.document.lastElementChild")]
-    public static partial IntPtr GetDocumentLastElementChildImpl();
+    public static partial JSObject GetDocumentLastElementChildImpl();
 
     [JSImport("globalThis.document.createTreeWalker")]
-    public static partial IntPtr DocCreateTreeWalker(IntPtr root, [JSMarshalAs<JSType.Number>] int whatToShow, IntPtr filter);
+    public static partial JSObject DocCreateTreeWalker(JSObject root, [JSMarshalAs<JSType.Number>] int whatToShow, IntPtr filter);
 }

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class HTMLCollection
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public HTMLCollection(IntPtr handle)
+    public HTMLCollection(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -20,19 +21,19 @@ public partial class HTMLCollection
         get
         {
             var handle = HTMLCollectionCore.ItemHTMLCollection(_jsHandle, index);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
     public Element? GetItem(int index)
     {
         var handle = HTMLCollectionCore.ItemHTMLCollection(_jsHandle, index);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public Element? NamedItem(string name)
     {
         var handle = HTMLCollectionCore.NamedItem(_jsHandle, name);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 }

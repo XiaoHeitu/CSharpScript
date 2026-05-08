@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.DOM;
 
@@ -7,32 +8,32 @@ namespace CSharpScript.Core.DOM;
 internal partial class ClassListCore
 {
     [JSImport("globalThis.DOMTokenList.prototype.length")]
-    public static partial int GetLength(IntPtr handle);
+    public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.DOMTokenList.prototype.item")]
-    public static partial string? Item(IntPtr handle, int index);
+    public static partial string? Item(JSObject handle, int index);
 
     [JSImport("globalThis.DOMTokenList.prototype.contains")]
-    public static partial bool Contains(IntPtr handle, string token);
+    public static partial bool Contains(JSObject handle, string token);
 
     [JSImport("globalThis.DOMTokenList.prototype.add")]
-    public static partial void Add(IntPtr handle, string token);
+    public static partial void Add(JSObject handle, string token);
 
     [JSImport("globalThis.DOMTokenList.prototype.remove")]
-    public static partial void Remove(IntPtr handle, string token);
+    public static partial void Remove(JSObject handle, string token);
 
     [JSImport("globalThis.DOMTokenList.prototype.toggle")]
-    public static partial bool Toggle(IntPtr handle, string token);
+    public static partial bool Toggle(JSObject handle, string token);
 
     [JSImport("globalThis.DOMTokenList.prototype.replace")]
-    public static partial bool Replace(IntPtr handle, string oldToken, string newToken);
+    public static partial bool Replace(JSObject handle, string oldToken, string newToken);
 
     [JSImport("globalThis.DOMTokenList.prototype.supports")]
-    public static partial bool Supports(IntPtr handle, string token);
+    public static partial bool Supports(JSObject handle, string token);
 
     [JSImport("globalThis.DOMTokenList.prototype.value")]
-    public static partial string GetValue(IntPtr handle);
+    public static partial string GetValue(JSObject handle);
 
     [JSImport("globalThis.DOMTokenList.prototype.value")]
-    public static partial void SetValue(IntPtr handle, string value);
+    public static partial void SetValue(JSObject handle, string value);
 }

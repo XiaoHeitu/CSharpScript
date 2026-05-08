@@ -1,15 +1,16 @@
 ﻿using CSharpScript.Event;
 using CSharpScript.CSS;
 using CSharpScript.Core.DOM;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.DOM;
 
 [SupportedOSPlatform("browser")]
 public partial class Element
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public Element(IntPtr handle)
+    public Element(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -54,7 +55,7 @@ public partial class Element
 
     public DOMRect GetBoundingClientRect() => new(ElementCore.GetBoundingClientRectImpl(_jsHandle));
 
-    public IntPtr OffsetParent => ElementCore.GetOffsetParent(_jsHandle);
+    public JSObject? OffsetParent => ElementCore.GetOffsetParent(_jsHandle);
     public double OffsetTop => ElementCore.GetOffsetTop(_jsHandle);
     public double OffsetLeft => ElementCore.GetOffsetLeft(_jsHandle);
     public double OffsetWidth => ElementCore.GetOffsetWidth(_jsHandle);
@@ -89,7 +90,7 @@ public partial class Element
         get
         {
             var handle = ElementCore.GetFirstElementChild(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -98,7 +99,7 @@ public partial class Element
         get
         {
             var handle = ElementCore.GetLastElementChild(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -107,7 +108,7 @@ public partial class Element
         get
         {
             var handle = ElementCore.GetPreviousElementSibling(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -116,7 +117,7 @@ public partial class Element
         get
         {
             var handle = ElementCore.GetNextElementSibling(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -145,14 +146,14 @@ public partial class Element
     public Element? Closest(string selectors)
     {
         var handle = ElementCore.Closest(_jsHandle, selectors);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public bool Matches(string selectors) => ElementCore.Matches(_jsHandle, selectors);
     public Element? QuerySelector(string selectors)
     {
         var handle = ElementCore.QuerySelector(_jsHandle, selectors);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public HTMLCollection QuerySelectorAll(string selectors) => new(ElementCore.QuerySelectorAll(_jsHandle, selectors));
@@ -161,21 +162,21 @@ public partial class Element
 
     public bool HasFocus() => ElementCore.HasFocus(_jsHandle);
 
-    public IntPtr Handle => _jsHandle;
+    public JSObject Handle => _jsHandle;
 
     public ClassList ClassList => new(ElementCore.GetClassList(_jsHandle));
 
     public void AddEventListener(string type, Action listener) =>
-        ElementCore.AddEventListener(_jsHandle, type, IntPtr.Zero);
+        ElementCore.AddEventListener(_jsHandle, type, null!);
 
     public void RemoveEventListener(string type, Action listener) =>
-        ElementCore.RemoveEventListener(_jsHandle, type, IntPtr.Zero);
+        ElementCore.RemoveEventListener(_jsHandle, type, null!);
 
     public void AddEventListener<T>(string type, Action<T> listener) =>
-        ElementCore.AddEventListener(_jsHandle, type, IntPtr.Zero);
+        ElementCore.AddEventListener(_jsHandle, type, null!);
 
     public void RemoveEventListener<T>(string type, Action<T> listener) =>
-        ElementCore.RemoveEventListener(_jsHandle, type, IntPtr.Zero);
+        ElementCore.RemoveEventListener(_jsHandle, type, null!);
 
     public bool DispatchEvent(BrowserEvent e) => ElementCore.DispatchEvent(_jsHandle, e.Handle);
 

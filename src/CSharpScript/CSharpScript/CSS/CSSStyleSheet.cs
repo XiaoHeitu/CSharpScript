@@ -21,7 +21,7 @@ public partial class CSSStyleSheet
         get
         {
             var handle = CSSStyleSheetCore.GetOwnerNode(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 

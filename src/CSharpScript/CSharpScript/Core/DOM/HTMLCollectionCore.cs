@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.DOM;
 
@@ -7,11 +8,11 @@ namespace CSharpScript.Core.DOM;
 internal partial class HTMLCollectionCore
 {
     [JSImport("globalThis.HTMLCollection.prototype.length")]
-    public static partial int GetLength(IntPtr handle);
+    public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.HTMLCollection.prototype.item")]
-    public static partial IntPtr ItemHTMLCollection(IntPtr handle, int index);
+    public static partial JSObject ItemHTMLCollection(JSObject handle, int index);
 
     [JSImport("globalThis.HTMLCollection.prototype.namedItem")]
-    public static partial IntPtr NamedItem(IntPtr handle, string name);
+    public static partial JSObject NamedItem(JSObject handle, string name);
 }

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class Selection
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public Selection(IntPtr handle)
+    public Selection(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -18,7 +19,7 @@ public partial class Selection
         get
         {
             var handle = SelectionCore.GetAnchorNode(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -29,7 +30,7 @@ public partial class Selection
         get
         {
             var handle = SelectionCore.GetFocusNode(_jsHandle);
-            return handle == IntPtr.Zero ? null : new Element(handle);
+            return handle == null ? null : new Element(handle);
         }
     }
 
@@ -43,11 +44,11 @@ public partial class Selection
     public DOMRange? GetRangeAt(int index)
     {
         var handle = SelectionCore.GetRangeAt(_jsHandle, index);
-        return handle == IntPtr.Zero ? null : new DOMRange(handle);
+        return handle == null ? null : new DOMRange(handle);
     }
 
     public void Collapse(Element? node, int offset) =>
-        SelectionCore.Collapse(_jsHandle, node?.Handle ?? IntPtr.Zero, offset);
+        SelectionCore.Collapse(_jsHandle, node?.Handle, offset);
 
     public void RemoveAllRanges() => SelectionCore.RemoveAllRanges(_jsHandle);
     public void AddRange(DOMRange range) => SelectionCore.AddRange(_jsHandle, range._jsHandle);

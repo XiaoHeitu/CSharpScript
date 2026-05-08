@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class NodeIterator
 {
-    private readonly IntPtr _jsHandle;
+    private readonly JSObject _jsHandle;
 
-    public NodeIterator(IntPtr handle)
+    public NodeIterator(JSObject handle)
     {
         _jsHandle = handle;
     }
@@ -24,13 +25,13 @@ public partial class NodeIterator
     public Element? NextNode()
     {
         var handle = NodeIteratorCore.NextNode(_jsHandle);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public Element? PreviousNode()
     {
         var handle = NodeIteratorCore.PreviousNode(_jsHandle);
-        return handle == IntPtr.Zero ? null : new Element(handle);
+        return handle == null ? null : new Element(handle);
     }
 
     public void Detach() => NodeIteratorCore.Detach(_jsHandle);

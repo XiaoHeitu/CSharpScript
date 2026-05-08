@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
@@ -6,9 +7,9 @@ namespace CSharpScript.DOM;
 [SupportedOSPlatform("browser")]
 public partial class DOMRect
 {
-    internal readonly IntPtr _jsHandle;
+    internal readonly JSObject _jsHandle;
 
-    public DOMRect(IntPtr handle)
+    public DOMRect(JSObject handle)
     {
         _jsHandle = handle;
     }

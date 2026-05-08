@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.Core.Event;
 
@@ -7,8 +8,8 @@ namespace CSharpScript.Core.Event;
 internal partial class TouchListCore
 {
     [JSImport("globalThis.TouchList.prototype.length")]
-    public static partial int GetLength(IntPtr handle);
+    public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.TouchList.prototype.item")]
-    public static partial IntPtr ItemTouchList(IntPtr handle, int index);
+    public static partial JSObject ItemTouchList(JSObject handle, int index);
 }
