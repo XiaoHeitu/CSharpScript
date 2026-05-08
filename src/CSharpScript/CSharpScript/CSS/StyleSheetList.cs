@@ -19,14 +19,14 @@ public partial class StyleSheetList
     {
         get
         {
-            var handle = StyleSheetListCore.ItemStyleSheetList(_jsHandle, index);
+            var handle = StyleSheetListCore.Item(_jsHandle, index);
             return handle == IntPtr.Zero ? null : new CSSStyleSheet(handle);
         }
     }
 
     public CSSStyleSheet? GetItem(int index)
     {
-        var handle = StyleSheetListCore.ItemStyleSheetList(_jsHandle, index);
+        var handle = StyleSheetListCore.Item(_jsHandle, index);
         return handle == IntPtr.Zero ? null : new CSSStyleSheet(handle);
     }
 }

@@ -26,7 +26,7 @@ internal partial class SelectionCore
     public static partial int GetRangeCount(JSObject handle);
 
     [JSImport("globalThis.Selection.prototype.toString")]
-    public static partial string SelectionToString(JSObject handle);
+    public static partial string ToStringImpl(JSObject handle);
 
     [JSImport("globalThis.Selection.prototype.getRangeAt")]
     public static partial JSObject GetRangeAt(JSObject handle, int index);

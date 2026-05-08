@@ -20,14 +20,14 @@ public partial class NodeList
     {
         get
         {
-            var handle = NodeListCore.ItemNodeList(_jsHandle, index);
+            var handle = NodeListCore.Item(_jsHandle, index);
             return handle == null ? null : new Element(handle);
         }
     }
 
     public Element? GetItem(int index)
     {
-        var handle = NodeListCore.ItemNodeList(_jsHandle, index);
+        var handle = NodeListCore.Item(_jsHandle, index);
         return handle == null ? null : new Element(handle);
     }
 }

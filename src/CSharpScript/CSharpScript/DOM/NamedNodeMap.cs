@@ -20,14 +20,14 @@ public partial class NamedNodeMap
     {
         get
         {
-            var handle = NamedNodeMapCore.ItemNamedNodeMap(_jsHandle, index);
+            var handle = NamedNodeMapCore.Item(_jsHandle, index);
             return handle == null ? null : new Attr(handle);
         }
     }
 
     public Attr? GetItem(int index)
     {
-        var handle = NamedNodeMapCore.ItemNamedNodeMap(_jsHandle, index);
+        var handle = NamedNodeMapCore.Item(_jsHandle, index);
         return handle == null ? null : new Attr(handle);
     }
 

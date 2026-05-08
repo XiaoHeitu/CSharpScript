@@ -39,7 +39,7 @@ public partial class Selection
     public bool IsCollapsed => SelectionCore.GetIsCollapsed(_jsHandle);
     public int RangeCount => SelectionCore.GetRangeCount(_jsHandle);
 
-    public override string ToString() => SelectionCore.SelectionToString(_jsHandle);
+    public override string ToString() => SelectionCore.ToStringImpl(_jsHandle);
 
     public DOMRange? GetRangeAt(int index)
     {

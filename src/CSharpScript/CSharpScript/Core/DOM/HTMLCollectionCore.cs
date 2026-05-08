@@ -11,7 +11,7 @@ internal partial class HTMLCollectionCore
     public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.HTMLCollection.prototype.item")]
-    public static partial JSObject ItemHTMLCollection(JSObject handle, int index);
+    public static partial JSObject Item(JSObject handle, int index);
 
     [JSImport("globalThis.HTMLCollection.prototype.namedItem")]
     public static partial JSObject NamedItem(JSObject handle, string name);

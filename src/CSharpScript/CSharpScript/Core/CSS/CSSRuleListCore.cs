@@ -10,5 +10,5 @@ internal partial class CSSRuleListCore
     public static partial int GetLength(IntPtr handle);
 
     [JSImport("globalThis.CSSRuleList.prototype.item")]
-    public static partial IntPtr ItemCSSRuleList(IntPtr handle, int index);
+    public static partial IntPtr Item(IntPtr handle, int index);
 }

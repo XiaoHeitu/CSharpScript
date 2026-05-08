@@ -20,14 +20,14 @@ public partial class HTMLCollection
     {
         get
         {
-            var handle = HTMLCollectionCore.ItemHTMLCollection(_jsHandle, index);
+            var handle = HTMLCollectionCore.Item(_jsHandle, index);
             return handle == null ? null : new Element(handle);
         }
     }
 
     public Element? GetItem(int index)
     {
-        var handle = HTMLCollectionCore.ItemHTMLCollection(_jsHandle, index);
+        var handle = HTMLCollectionCore.Item(_jsHandle, index);
         return handle == null ? null : new Element(handle);
     }
 

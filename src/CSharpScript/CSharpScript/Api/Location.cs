@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.Api;
 
 namespace CSharpScript.Api;
@@ -8,6 +9,7 @@ public partial class Location
 {
     private static Location? _instance;
     private static readonly object _lock = new();
+    private static JSObject LocationObject => JSHost.GlobalThis.GetPropertyAsJSObject("location")!;
 
     public static Location Instance
     {
@@ -28,25 +30,25 @@ public partial class Location
 
     public string Href
     {
-        get => Window.EvalString("location.href");
-        set => Window.EvalString($"location.href='{value}'");
+        get => LocationObject.GetPropertyAsString("href")!;
+        set => LocationObject.SetProperty("href", value);
     }
 
-    public string Protocol => Window.EvalString("location.protocol");
+    public string Protocol => LocationObject.GetPropertyAsString("protocol")!;
 
-    public string Host => Window.EvalString("location.host");
+    public string Host => LocationObject.GetPropertyAsString("host")!;
 
-    public string Hostname => Window.EvalString("location.hostname");
+    public string Hostname => LocationObject.GetPropertyAsString("hostname")!;
 
-    public string Port => Window.EvalString("location.port");
+    public string Port => LocationObject.GetPropertyAsString("port")!;
 
-    public string Pathname => Window.EvalString("location.pathname");
+    public string Pathname => LocationObject.GetPropertyAsString("pathname")!;
 
-    public string Search => Window.EvalString("location.search");
+    public string Search => LocationObject.GetPropertyAsString("search")!;
 
-    public string Hash => Window.EvalString("location.hash");
+    public string Hash => LocationObject.GetPropertyAsString("hash")!;
 
-    public string Origin => Window.EvalString("location.origin");
+    public string Origin => LocationObject.GetPropertyAsString("origin")!;
 
     public void Assign(string url) => LocationCore.Assign(url);
 

@@ -1,4 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
+using CSharpScript.Core.Api;
 
 namespace CSharpScript.Api;
 
@@ -7,6 +9,7 @@ public partial class Navigator
 {
     private static Navigator? _instance;
     private static readonly object _lock = new();
+    private static JSObject NavigatorObject => JSHost.GlobalThis.GetPropertyAsJSObject("navigator")!;
 
     public static Navigator Instance
     {
@@ -25,31 +28,31 @@ public partial class Navigator
 
     private Navigator() { }
 
-    public string UserAgent => Window.EvalString("navigator.userAgent");
+    public string UserAgent => NavigatorObject.GetPropertyAsString("userAgent")!;
 
-    public string AppName => Window.EvalString("navigator.appName");
+    public string AppName => NavigatorObject.GetPropertyAsString("appName")!;
 
-    public string AppVersion => Window.EvalString("navigator.appVersion");
+    public string AppVersion => NavigatorObject.GetPropertyAsString("appVersion")!;
 
-    public string AppCodeName => Window.EvalString("navigator.appCodeName");
+    public string AppCodeName => NavigatorObject.GetPropertyAsString("appCodeName")!;
 
-    public string Platform => Window.EvalString("navigator.platform");
+    public string Platform => NavigatorObject.GetPropertyAsString("platform")!;
 
-    public string Product => Window.EvalString("navigator.product");
+    public string Product => NavigatorObject.GetPropertyAsString("product")!;
 
-    public string Vendor => Window.EvalString("navigator.vendor");
+    public string Vendor => NavigatorObject.GetPropertyAsString("vendor")!;
 
-    public string Language => Window.EvalString("navigator.language");
+    public string Language => NavigatorObject.GetPropertyAsString("language")!;
 
-    public string Languages => Window.EvalString("navigator.languages");
+    public string Languages => NavigatorObject.GetPropertyAsString("languages")!;
 
-    public bool OnLine => Window.EvalBool("navigator.onLine");
+    public bool OnLine => NavigatorObject.GetPropertyAsBoolean("onLine");
 
-    public bool CookieEnabled => Window.EvalBool("navigator.cookieEnabled");
+    public bool CookieEnabled => NavigatorObject.GetPropertyAsBoolean("cookieEnabled");
 
-    public bool JavaEnabled() => Window.EvalBool("navigator.javaEnabled()");
+    public bool JavaEnabled() => NavigatorCore.JavaEnabled();
 
-    public int MaxTouchPoints => Window.EvalInt("navigator.maxTouchPoints");
+    public int MaxTouchPoints => NavigatorObject.GetPropertyAsInt32("maxTouchPoints");
 
-    public int HardwareConcurrency => Window.EvalInt("navigator.hardwareConcurrency");
+    public int HardwareConcurrency => NavigatorObject.GetPropertyAsInt32("hardwareConcurrency");
 }

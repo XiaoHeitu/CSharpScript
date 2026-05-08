@@ -11,7 +11,7 @@ internal partial class NodeListCore
     public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.NodeList.prototype.item")]
-    public static partial JSObject ItemNodeList(JSObject handle, int index);
+    public static partial JSObject Item(JSObject handle, int index);
 
     [JSImport("globalThis.NodeList.prototype.forEach")]
     public static partial void ForEach(JSObject handle, JSObject callback);

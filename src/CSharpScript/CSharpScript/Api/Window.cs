@@ -1,7 +1,5 @@
-﻿using Microsoft.JSInterop;
-using Microsoft.JSInterop.Implementation;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Storage;
 using CSharpScript.Core.Api;
 
@@ -12,6 +10,7 @@ public partial class Window
 {
     private static Window? _instance;
     private static readonly object _lock = new();
+    private static JSObject WindowObject => JSHost.GlobalThis;
 
     public static Window Instance
     {
@@ -72,34 +71,34 @@ public partial class Window
 
     public static void Blur() => WindowCore.Blur();
 
-    public static int InnerWidth => WindowCore.EvalInt("window.innerWidth");
+    public static int InnerWidth => WindowObject.GetPropertyAsInt32("innerWidth");
 
-    public static int InnerHeight => WindowCore.EvalInt("window.innerHeight");
+    public static int InnerHeight => WindowObject.GetPropertyAsInt32("innerHeight");
 
-    public static int OuterWidth => WindowCore.EvalInt("window.outerWidth");
+    public static int OuterWidth => WindowObject.GetPropertyAsInt32("outerWidth");
 
-    public static int OuterHeight => WindowCore.EvalInt("window.outerHeight");
+    public static int OuterHeight => WindowObject.GetPropertyAsInt32("outerHeight");
 
-    public static int ScreenX => WindowCore.EvalInt("window.screenX");
+    public static int ScreenX => WindowObject.GetPropertyAsInt32("screenX");
 
-    public static int ScreenY => WindowCore.EvalInt("window.screenY");
+    public static int ScreenY => WindowObject.GetPropertyAsInt32("screenY");
 
-    public static double DevicePixelRatio => WindowCore.EvalDouble("window.devicePixelRatio");
+    public static double DevicePixelRatio => WindowObject.GetPropertyAsDouble("devicePixelRatio");
 
-    public static string Origin => WindowCore.EvalString("window.origin");
+    public static string Origin => WindowObject.GetPropertyAsString("origin")!;
 
-    public static bool Closed => WindowCore.EvalBool("window.closed");
+    public static bool Closed => WindowObject.GetPropertyAsBoolean("closed");
 
     public static string Name
     {
-        get => WindowCore.EvalString("window.name");
-        set => WindowCore.EvalString($"window.name='{value}'");
+        get => WindowObject.GetPropertyAsString("name")!;
+        set => WindowObject.SetProperty("name", value);
     }
 
     public static string Status
     {
-        get => WindowCore.EvalString("window.status");
-        set => WindowCore.EvalString($"window.status='{value}'");
+        get => WindowObject.GetPropertyAsString("status")!;
+        set => WindowObject.SetProperty("status", value);
     }
 
     public static void ResizeTo(int width, int height) => WindowCore.ResizeTo(width, height);

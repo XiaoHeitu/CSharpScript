@@ -47,5 +47,5 @@ internal partial class DOMRangeCore
     public static partial JSObject CloneRange(JSObject handle);
 
     [JSImport("globalThis.Range.prototype.toString")]
-    public static partial string RangeToString(JSObject handle);
+    public static partial string ToStringImpl(JSObject handle);
 }

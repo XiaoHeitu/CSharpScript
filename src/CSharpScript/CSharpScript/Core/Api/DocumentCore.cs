@@ -52,15 +52,6 @@ internal partial class DocumentCore
     [JSImport("globalThis.document.createNodeIterator")]
     public static partial JSObject CreateNodeIteratorImpl(JSObject root, int whatToShow, IntPtr filter);
 
-    [JSImport("globalThis.document.body")]
-    public static partial JSObject GetBodyImpl();
-
-    [JSImport("globalThis.document.head")]
-    public static partial JSObject GetHeadImpl();
-
-    [JSImport("globalThis.document.documentElement")]
-    public static partial JSObject GetDocumentElementImpl();
-
     [JSImport("globalThis.document.write")]
     public static partial void WriteImpl(string? text);
 
@@ -97,60 +88,6 @@ internal partial class DocumentCore
     [JSImport("globalThis.document.queryCommandSupported")]
     public static partial bool QueryCommandSupportedImpl(string commandId);
 
-    [JSImport("globalThis.document.activeElement")]
-    public static partial JSObject GetActiveElementImpl();
-
-    [JSImport("globalThis.document.fullscreenElement")]
-    public static partial JSObject GetFullscreenElementImpl();
-
-    [JSImport("globalThis.document.pointerLockElement")]
-    public static partial JSObject GetPointerLockElementImpl();
-
-    [JSImport("globalThis.document.scripts")]
-    public static partial JSObject GetScriptsImpl();
-
-    [JSImport("globalThis.document.images")]
-    public static partial JSObject GetImagesImpl();
-
-    [JSImport("globalThis.document.links")]
-    public static partial JSObject GetLinksImpl();
-
-    [JSImport("globalThis.document.forms")]
-    public static partial JSObject GetFormsImpl();
-
-    [JSImport("globalThis.document.anchors")]
-    public static partial JSObject GetAnchorsImpl();
-
-    [JSImport("globalThis.document.embeds")]
-    public static partial JSObject GetEmbedsImpl();
-
-    [JSImport("globalThis.document.plugins")]
-    public static partial JSObject GetPluginsImpl();
-
     [JSImport("globalThis.document.styleSheets")]
     public static partial IntPtr GetStyleSheetsImpl();
-
-    [JSImport("globalThis.document.preferredStyleSheetSet")]
-    public static partial string GetPreferredStyleSheetSetImpl();
-
-    [JSImport("globalThis.document.selectedStyleSheetSet")]
-    public static partial string GetSelectedStyleSheetSetImpl();
-
-    [JSImport("globalThis.document.selectedStyleSheetSet")]
-    public static partial void SetSelectedStyleSheetSetImpl(string value);
-
-    [JSImport("globalThis.document.children")]
-    public static partial JSObject GetDocumentChildrenImpl();
-
-    [JSImport("globalThis.document.childElementCount")]
-    public static partial int GetDocumentChildElementCountImpl();
-
-    [JSImport("globalThis.document.firstElementChild")]
-    public static partial JSObject GetDocumentFirstElementChildImpl();
-
-    [JSImport("globalThis.document.lastElementChild")]
-    public static partial JSObject GetDocumentLastElementChildImpl();
-
-    [JSImport("globalThis.document.createTreeWalker")]
-    public static partial JSObject DocCreateTreeWalker(JSObject root, [JSMarshalAs<JSType.Number>] int whatToShow, IntPtr filter);
 }

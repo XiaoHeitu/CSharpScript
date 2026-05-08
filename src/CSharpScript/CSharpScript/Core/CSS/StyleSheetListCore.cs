@@ -10,5 +10,5 @@ internal partial class StyleSheetListCore
     public static partial int GetLength(IntPtr handle);
 
     [JSImport("globalThis.StyleSheetList.prototype.item")]
-    public static partial IntPtr ItemStyleSheetList(IntPtr handle, int index);
+    public static partial IntPtr Item(IntPtr handle, int index);
 }

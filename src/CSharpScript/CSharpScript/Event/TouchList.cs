@@ -20,14 +20,14 @@ public partial class TouchList
     {
         get
         {
-            var handle = TouchListCore.ItemTouchList(_jsHandle, index);
+            var handle = TouchListCore.Item(_jsHandle, index);
             return handle == null ? null : new Touch(handle);
         }
     }
 
     public Touch? GetItem(int index)
     {
-        var handle = TouchListCore.ItemTouchList(_jsHandle, index);
+        var handle = TouchListCore.Item(_jsHandle, index);
         return handle == null ? null : new Touch(handle);
     }
 }

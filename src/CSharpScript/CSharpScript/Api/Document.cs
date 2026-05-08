@@ -12,6 +12,7 @@ public partial class Document
 {
     private static Document? _instance;
     private static readonly object _lock = new();
+    private static JSObject DocumentObject => JSHost.GlobalThis.GetPropertyAsJSObject("document")!;
 
     public static Document Instance
     {
@@ -64,37 +65,33 @@ public partial class Document
 
     public string Title
     {
-        get => Window.EvalString("document.title");
-        set => Window.EvalString($"document.title='{value}'");
+        get => DocumentObject.GetPropertyAsString("title")!;
+        set => DocumentObject.SetProperty("title", value);
     }
-
-    public JSObject GetBodyImpl() => DocumentCore.GetBodyImpl();
-    public JSObject GetHeadImpl() => DocumentCore.GetHeadImpl();
-    public JSObject GetDocumentElementImpl() => DocumentCore.GetDocumentElementImpl();
 
     public string Cookie
     {
-        get => Window.EvalString("document.cookie");
-        set => Window.EvalString($"document.cookie='{value}'");
+        get => DocumentObject.GetPropertyAsString("cookie")!;
+        set => DocumentObject.SetProperty("cookie", value);
     }
 
-    public string Domain => Window.EvalString("document.domain");
-    public string Referrer => Window.EvalString("document.referrer");
-    public string URL => Window.EvalString("document.URL");
-    public string URLUnencoded => Window.EvalString("document.URLUnencoded");
-    public string ReadyState => Window.EvalString("document.readyState");
-    public bool Hidden => Window.EvalBool("document.hidden");
-    public string VisibilityState => Window.EvalString("document.visibilityState");
-    public string CharacterSet => Window.EvalString("document.characterSet");
-    public string ContentType => Window.EvalString("document.contentType");
-    public string InputEncoding => Window.EvalString("document.inputEncoding");
-    public string LastModified => Window.EvalString("document.lastModified");
-    public string CompatMode => Window.EvalString("document.compatMode");
+    public string Domain => DocumentObject.GetPropertyAsString("domain")!;
+    public string Referrer => DocumentObject.GetPropertyAsString("referrer")!;
+    public string URL => DocumentObject.GetPropertyAsString("URL")!;
+    public string URLUnencoded => DocumentObject.GetPropertyAsString("URLUnencoded")!;
+    public string ReadyState => DocumentObject.GetPropertyAsString("readyState")!;
+    public bool Hidden => DocumentObject.GetPropertyAsBoolean("hidden");
+    public string VisibilityState => DocumentObject.GetPropertyAsString("visibilityState")!;
+    public string CharacterSet => DocumentObject.GetPropertyAsString("characterSet")!;
+    public string ContentType => DocumentObject.GetPropertyAsString("contentType")!;
+    public string InputEncoding => DocumentObject.GetPropertyAsString("inputEncoding")!;
+    public string LastModified => DocumentObject.GetPropertyAsString("lastModified")!;
+    public string CompatMode => DocumentObject.GetPropertyAsString("compatMode")!;
 
     public string DesignMode
     {
-        get => Window.EvalString("document.designMode");
-        set => Window.EvalString($"document.designMode='{value}'");
+        get => DocumentObject.GetPropertyAsString("designMode")!;
+        set => DocumentObject.SetProperty("designMode", value);
     }
 
     public void WriteImpl(string? text) => DocumentCore.WriteImpl(text);
@@ -116,28 +113,7 @@ public partial class Document
     public bool QueryCommandEnabledImpl(string commandId) => DocumentCore.QueryCommandEnabledImpl(commandId);
     public bool QueryCommandSupportedImpl(string commandId) => DocumentCore.QueryCommandSupportedImpl(commandId);
 
-    public JSObject GetActiveElementImpl() => DocumentCore.GetActiveElementImpl();
-    public JSObject GetFullscreenElementImpl() => DocumentCore.GetFullscreenElementImpl();
-    public JSObject GetPointerLockElementImpl() => DocumentCore.GetPointerLockElementImpl();
-    public JSObject GetScriptsImpl() => DocumentCore.GetScriptsImpl();
-    public JSObject GetImagesImpl() => DocumentCore.GetImagesImpl();
-    public JSObject GetLinksImpl() => DocumentCore.GetLinksImpl();
-    public JSObject GetFormsImpl() => DocumentCore.GetFormsImpl();
-    public JSObject GetAnchorsImpl() => DocumentCore.GetAnchorsImpl();
-    public JSObject GetEmbedsImpl() => DocumentCore.GetEmbedsImpl();
-    public JSObject GetPluginsImpl() => DocumentCore.GetPluginsImpl();
     public IntPtr GetStyleSheetsImpl() => DocumentCore.GetStyleSheetsImpl();
-    public string GetPreferredStyleSheetSetImpl() => DocumentCore.GetPreferredStyleSheetSetImpl();
-    public string GetSelectedStyleSheetSetImpl() => DocumentCore.GetSelectedStyleSheetSetImpl();
-    public void SetSelectedStyleSheetSetImpl(string value) => DocumentCore.SetSelectedStyleSheetSetImpl(value);
-
-    public JSObject GetDocumentChildrenImpl() => DocumentCore.GetDocumentChildrenImpl();
-    public int GetDocumentChildElementCountImpl() => DocumentCore.GetDocumentChildElementCountImpl();
-    public JSObject GetDocumentFirstElementChildImpl() => DocumentCore.GetDocumentFirstElementChildImpl();
-    public JSObject GetDocumentLastElementChildImpl() => DocumentCore.GetDocumentLastElementChildImpl();
-
-    public JSObject DocCreateTreeWalker(JSObject root, int whatToShow, IntPtr filter) =>
-        DocumentCore.DocCreateTreeWalker(root, whatToShow, filter);
 
     public Element? GetElementById(string id)
     {
@@ -194,7 +170,7 @@ public partial class Document
     {
         get
         {
-            var handle = GetBodyImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("body");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -203,7 +179,7 @@ public partial class Document
     {
         get
         {
-            var handle = GetHeadImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("head");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -212,7 +188,7 @@ public partial class Document
     {
         get
         {
-            var handle = GetDocumentElementImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("documentElement");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -221,7 +197,7 @@ public partial class Document
     {
         get
         {
-            var handle = GetActiveElementImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("activeElement");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -230,7 +206,7 @@ public partial class Document
     {
         get
         {
-            var handle = GetFullscreenElementImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("fullscreenElement");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -239,35 +215,35 @@ public partial class Document
     {
         get
         {
-            var handle = GetPointerLockElementImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("pointerLockElement");
             return handle == null ? null : new Element(handle);
         }
     }
 
-    public HTMLCollection Scripts => new(GetScriptsImpl());
-    public HTMLCollection Images => new(GetImagesImpl());
-    public HTMLCollection Links => new(GetLinksImpl());
-    public HTMLCollection Forms => new(GetFormsImpl());
-    public HTMLCollection Anchors => new(GetAnchorsImpl());
-    public HTMLCollection Embeds => new(GetEmbedsImpl());
-    public HTMLCollection Plugins => new(GetPluginsImpl());
+    public HTMLCollection Scripts => new(DocumentObject.GetPropertyAsJSObject("scripts")!);
+    public HTMLCollection Images => new(DocumentObject.GetPropertyAsJSObject("images")!);
+    public HTMLCollection Links => new(DocumentObject.GetPropertyAsJSObject("links")!);
+    public HTMLCollection Forms => new(DocumentObject.GetPropertyAsJSObject("forms")!);
+    public HTMLCollection Anchors => new(DocumentObject.GetPropertyAsJSObject("anchors")!);
+    public HTMLCollection Embeds => new(DocumentObject.GetPropertyAsJSObject("embeds")!);
+    public HTMLCollection Plugins => new(DocumentObject.GetPropertyAsJSObject("plugins")!);
     public StyleSheetList StyleSheets => new(GetStyleSheetsImpl());
-    public string PreferredStyleSheetSet => GetPreferredStyleSheetSetImpl();
+    public string PreferredStyleSheetSet => DocumentObject.GetPropertyAsString("preferredStyleSheetSet")!;
 
     public string SelectedStyleSheetSet
     {
-        get => GetSelectedStyleSheetSetImpl();
-        set => SetSelectedStyleSheetSetImpl(value);
+        get => DocumentObject.GetPropertyAsString("selectedStyleSheetSet")!;
+        set => DocumentObject.SetProperty("selectedStyleSheetSet", value);
     }
 
-    public HTMLCollection DocumentChildren => new(GetDocumentChildrenImpl());
-    public int DocumentChildElementCount => GetDocumentChildElementCountImpl();
+    public HTMLCollection DocumentChildren => new(DocumentObject.GetPropertyAsJSObject("children")!);
+    public int DocumentChildElementCount => DocumentObject.GetPropertyAsInt32("childElementCount");
 
     public Element? DocumentFirstElementChild
     {
         get
         {
-            var handle = GetDocumentFirstElementChildImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("firstElementChild");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -276,7 +252,7 @@ public partial class Document
     {
         get
         {
-            var handle = GetDocumentLastElementChildImpl();
+            var handle = DocumentObject.GetPropertyAsJSObject("lastElementChild");
             return handle == null ? null : new Element(handle);
         }
     }

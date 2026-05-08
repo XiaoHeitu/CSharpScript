@@ -11,7 +11,7 @@ internal partial class NamedNodeMapCore
     public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.NamedNodeMap.prototype.item")]
-    public static partial JSObject ItemNamedNodeMap(JSObject handle, int index);
+    public static partial JSObject Item(JSObject handle, int index);
 
     [JSImport("globalThis.NamedNodeMap.prototype.getNamedItem")]
     public static partial JSObject GetNamedItem(JSObject handle, string name);

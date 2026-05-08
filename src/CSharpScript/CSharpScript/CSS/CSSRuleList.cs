@@ -19,14 +19,14 @@ public partial class CSSRuleList
     {
         get
         {
-            var handle = CSSRuleListCore.ItemCSSRuleList(_jsHandle, index);
+            var handle = CSSRuleListCore.Item(_jsHandle, index);
             return handle == IntPtr.Zero ? null : new CSSRule(handle);
         }
     }
 
     public CSSRule? GetItem(int index)
     {
-        var handle = CSSRuleListCore.ItemCSSRuleList(_jsHandle, index);
+        var handle = CSSRuleListCore.Item(_jsHandle, index);
         return handle == IntPtr.Zero ? null : new CSSRule(handle);
     }
 }

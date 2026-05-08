@@ -11,5 +11,5 @@ internal partial class TouchListCore
     public static partial int GetLength(JSObject handle);
 
     [JSImport("globalThis.TouchList.prototype.item")]
-    public static partial JSObject ItemTouchList(JSObject handle, int index);
+    public static partial JSObject Item(JSObject handle, int index);
 }

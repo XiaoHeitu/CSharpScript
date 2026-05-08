@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using CSharpScript.Core.Api;
 
 namespace CSharpScript.Api;
@@ -8,6 +9,7 @@ public partial class History
 {
     private static History? _instance;
     private static readonly object _lock = new();
+    private static JSObject HistoryObject => JSHost.GlobalThis.GetPropertyAsJSObject("history")!;
 
     public static History Instance
     {
@@ -26,7 +28,7 @@ public partial class History
 
     private History() { }
 
-    public int Length => Window.EvalInt("history.length");
+    public int Length => HistoryObject.GetPropertyAsInt32("length");
 
     public void Back() => HistoryCore.Back();
 
