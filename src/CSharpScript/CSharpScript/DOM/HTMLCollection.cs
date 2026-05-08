@@ -1,6 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using CSharpScript.Core.DOM;
 using System.Runtime.InteropServices.JavaScript;
-using CSharpScript.Core.DOM;
 
 namespace CSharpScript.DOM;
 
@@ -14,7 +13,7 @@ public partial class HTMLCollection
         _jsHandle = handle;
     }
 
-    public int Length => HTMLCollectionCore.GetLength(_jsHandle);
+    public int Length => _jsHandle.GetPropertyAsInt32("length");
 
     public Element? this[int index]
     {

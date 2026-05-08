@@ -1,6 +1,6 @@
-﻿using CSharpScript.Event;
+﻿using CSharpScript.Core.DOM;
 using CSharpScript.CSS;
-using CSharpScript.Core.DOM;
+using CSharpScript.Event;
 using System.Runtime.InteropServices.JavaScript;
 
 namespace CSharpScript.DOM;
@@ -17,79 +17,79 @@ public partial class Element
 
     public string Id
     {
-        get => ElementCore.GetId(_jsHandle);
-        set => ElementCore.SetId(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsString("id")!;
+        set => _jsHandle.SetProperty("id", value);
     }
 
-    public string TagName => ElementCore.GetTagName(_jsHandle);
+    public string TagName => _jsHandle.GetPropertyAsString("tagName")!;
 
     public string ClassName
     {
-        get => ElementCore.GetClassName(_jsHandle);
-        set => ElementCore.SetClassName(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsString("className")!;
+        set => _jsHandle.SetProperty("className", value);
     }
 
     public string InnerHTML
     {
-        get => ElementCore.GetInnerHTML(_jsHandle);
-        set => ElementCore.SetInnerHTML(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsString("innerHTML")!;
+        set => _jsHandle.SetProperty("innerHTML", value);
     }
 
     public string OuterHTML
     {
-        get => ElementCore.GetOuterHTML(_jsHandle);
-        set => ElementCore.SetOuterHTML(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsString("outerHTML")!;
+        set => _jsHandle.SetProperty("outerHTML", value);
     }
 
     public string? TextContent
     {
-        get => ElementCore.GetTextContent(_jsHandle);
-        set => ElementCore.SetTextContent(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsString("textContent");
+        set => _jsHandle.SetProperty("textContent", value);
     }
 
     public string InnerText
     {
-        get => ElementCore.GetInnerText(_jsHandle);
-        set => ElementCore.SetInnerText(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsString("innerText")!;
+        set => _jsHandle.SetProperty("innerText", value);
     }
 
     public DOMRect GetBoundingClientRect() => new(ElementCore.GetBoundingClientRectImpl(_jsHandle));
 
-    public JSObject? OffsetParent => ElementCore.GetOffsetParent(_jsHandle);
-    public double OffsetTop => ElementCore.GetOffsetTop(_jsHandle);
-    public double OffsetLeft => ElementCore.GetOffsetLeft(_jsHandle);
-    public double OffsetWidth => ElementCore.GetOffsetWidth(_jsHandle);
-    public double OffsetHeight => ElementCore.GetOffsetHeight(_jsHandle);
+    public JSObject? OffsetParent => _jsHandle.GetPropertyAsJSObject("offsetParent");
+    public double OffsetTop => _jsHandle.GetPropertyAsDouble("offsetTop");
+    public double OffsetLeft => _jsHandle.GetPropertyAsDouble("offsetLeft");
+    public double OffsetWidth => _jsHandle.GetPropertyAsDouble("offsetWidth");
+    public double OffsetHeight => _jsHandle.GetPropertyAsDouble("offsetHeight");
 
     public double ScrollTop
     {
-        get => ElementCore.GetScrollTop(_jsHandle);
-        set => ElementCore.SetScrollTop(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsDouble("scrollTop");
+        set => _jsHandle.SetProperty("scrollTop", value);
     }
 
     public double ScrollLeft
     {
-        get => ElementCore.GetScrollLeft(_jsHandle);
-        set => ElementCore.SetScrollLeft(_jsHandle, value);
+        get => _jsHandle.GetPropertyAsDouble("scrollLeft");
+        set => _jsHandle.SetProperty("scrollLeft", value);
     }
 
-    public double ScrollWidth => ElementCore.GetScrollWidth(_jsHandle);
-    public double ScrollHeight => ElementCore.GetScrollHeight(_jsHandle);
+    public double ScrollWidth => _jsHandle.GetPropertyAsDouble("scrollWidth");
+    public double ScrollHeight => _jsHandle.GetPropertyAsDouble("scrollHeight");
 
-    public double ClientTop => ElementCore.GetClientTop(_jsHandle);
-    public double ClientLeft => ElementCore.GetClientLeft(_jsHandle);
-    public double ClientWidth => ElementCore.GetClientWidth(_jsHandle);
-    public double ClientHeight => ElementCore.GetClientHeight(_jsHandle);
+    public double ClientTop => _jsHandle.GetPropertyAsDouble("clientTop");
+    public double ClientLeft => _jsHandle.GetPropertyAsDouble("clientLeft");
+    public double ClientWidth => _jsHandle.GetPropertyAsDouble("clientWidth");
+    public double ClientHeight => _jsHandle.GetPropertyAsDouble("clientHeight");
 
-    public HTMLCollection Children => new(ElementCore.GetChildren(_jsHandle));
+    public HTMLCollection Children => new(_jsHandle.GetPropertyAsJSObject("children")!);
 
-    public int ChildElementCount => ElementCore.GetChildElementCount(_jsHandle);
+    public int ChildElementCount => _jsHandle.GetPropertyAsInt32("childElementCount");
 
     public Element? FirstElementChild
     {
         get
         {
-            var handle = ElementCore.GetFirstElementChild(_jsHandle);
+            var handle = _jsHandle.GetPropertyAsJSObject("firstElementChild");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -98,7 +98,7 @@ public partial class Element
     {
         get
         {
-            var handle = ElementCore.GetLastElementChild(_jsHandle);
+            var handle = _jsHandle.GetPropertyAsJSObject("lastElementChild");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -107,7 +107,7 @@ public partial class Element
     {
         get
         {
-            var handle = ElementCore.GetPreviousElementSibling(_jsHandle);
+            var handle = _jsHandle.GetPropertyAsJSObject("previousElementSibling");
             return handle == null ? null : new Element(handle);
         }
     }
@@ -116,7 +116,7 @@ public partial class Element
     {
         get
         {
-            var handle = ElementCore.GetNextElementSibling(_jsHandle);
+            var handle = _jsHandle.GetPropertyAsJSObject("nextElementSibling");
             return handle == null ? null : new Element(handle);
         }
     }
